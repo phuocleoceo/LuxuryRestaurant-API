@@ -1,8 +1,10 @@
+using LuxuryRestaurantAPI.Authentication;
 using LuxuryRestaurantAPI.Service;
 using LuxuryRestaurantAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using LuxuryRestaurantAPI.DTO;
 using AutoMapper;
+using System.Security.Claims;
 
 namespace LuxuryRestaurantAPI.Controllers;
 
@@ -10,12 +12,15 @@ namespace LuxuryRestaurantAPI.Controllers;
 [Route("api/[controller]")]
 public class UserController : ControllerBase
 {
+    private readonly IAuthenticationManager _authManager;
     private readonly UserService _userService;
     private readonly IMapper _mapper;
-    public UserController(UserService userService, IMapper mapper)
+    public UserController(UserService userService, IMapper mapper,
+                            IAuthenticationManager authManager)
     {
         _userService = userService;
         _mapper = mapper;
+        _authManager = authManager;
     }
 
     [HttpGet]
@@ -40,13 +45,27 @@ public class UserController : ControllerBase
     public async Task<IActionResult> Login(UserForLogin userForLogin)
     {
         User user = _mapper.Map<User>(userForLogin);
-        user = await _userService.LoginAsync(user);
-        if (user is null)
+        User _user = await _userService.LoginAsync(user);
+        if (_user is null)
         {
             return Unauthorized();
         }
+        // Create TOKEN
+        IEnumerable<Claim> claims = _authManager.GetClaims(_user);
+        string accessToken = _authManager.CreateAccessToken(claims);
 
-        return Ok(user);
+        var userInfor = new
+        {
+            Id = _user.Id,
+            Displayname = _user.Displayname,
+            Username = _user.Username,
+            Role = _user.Role
+        };
+        return Ok(new
+        {
+            AccessToken = accessToken,
+            User = userInfor
+        });
     }
 
     [HttpPost("register")]

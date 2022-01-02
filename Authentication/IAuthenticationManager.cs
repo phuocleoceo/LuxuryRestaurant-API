@@ -3,7 +3,7 @@ using LuxuryRestaurantAPI.Models;
 
 namespace LuxuryRestaurantAPI.Authentication;
 
-public interface IAuthenticaionManager
+public interface IAuthenticationManager
 {
     IEnumerable<Claim> GetClaims(User _user);
 

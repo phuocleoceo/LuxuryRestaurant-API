@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<FoodService>();
 builder.Services.AddSingleton<UserService>();
 builder.Services.AddAutoMapper(typeof(LRMapping));
-builder.Services.AddScoped<IAuthenticaionManager, AuthenticationManager>();
+builder.Services.AddScoped<IAuthenticationManager, AuthenticationManager>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

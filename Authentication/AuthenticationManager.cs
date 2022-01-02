@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LuxuryRestaurantAPI.Authentication;
 
-public class AuthenticationManager : IAuthenticaionManager
+public class AuthenticationManager : IAuthenticationManager
 {
     private readonly IConfiguration _configuration;
     public AuthenticationManager(IConfiguration configuration)

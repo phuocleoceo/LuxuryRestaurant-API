@@ -13,6 +13,7 @@ public class LRMapping : Profile
         CreateMap<UserForLogin, User>();
 
         CreateMap<UserForRegister, User>()
-            .ForMember(u => u.Role, prop => prop.MapFrom(c => "customer"));
+            .ForMember(u => u.Role, prop => prop.MapFrom(c => "customer"))
+            .ForMember(u => u.RefreshToken, prop => prop.MapFrom(c => ""));
     }
 }
