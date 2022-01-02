@@ -22,7 +22,7 @@ public class FoodService
         return await _foodCollection.Find(_ => true).ToListAsync();
     }
 
-    public async Task<Food?> GetAsync(string id)
+    public async Task<Food> GetAsync(string id)
     {
         return await _foodCollection.Find(c => c.Id == id).FirstOrDefaultAsync();
     }
@@ -32,9 +32,9 @@ public class FoodService
         await _foodCollection.InsertOneAsync(newFood);
     }
 
-    public async Task UpdateAsync(string id, Food updatedFood)
+    public async Task UpdateAsync(string id, Food updateFood)
     {
-        await _foodCollection.ReplaceOneAsync(c => c.Id == id, updatedFood);
+        await _foodCollection.ReplaceOneAsync(c => c.Id == id, updateFood);
     }
 
     public async Task RemoveAsync(string id)

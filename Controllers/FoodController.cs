@@ -27,7 +27,7 @@ public class FoodController : ControllerBase
     [HttpGet("{id:length(24)}")]
     public async Task<ActionResult<Food>> GetOne(string id)
     {
-        Food? food = await _foodService.GetAsync(id);
+        Food food = await _foodService.GetAsync(id);
 
         if (food is null)
         {
@@ -48,7 +48,7 @@ public class FoodController : ControllerBase
     [HttpPut("{id:length(24)}")]
     public async Task<IActionResult> Update(string id, FoodDTO updatedFoodDTO)
     {
-        Food? food = await _foodService.GetAsync(id);
+        Food food = await _foodService.GetAsync(id);
         if (food is null)
         {
             return NotFound();
@@ -64,7 +64,7 @@ public class FoodController : ControllerBase
     [HttpDelete("{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
     {
-        Food? food = await _foodService.GetAsync(id);
+        Food food = await _foodService.GetAsync(id);
         if (food is null)
         {
             return NotFound();

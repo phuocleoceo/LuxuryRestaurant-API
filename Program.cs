@@ -1,11 +1,12 @@
-using LuxuryRestaurantAPI.Mapper;
 using LuxuryRestaurantAPI.Service;
+using LuxuryRestaurantAPI.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddSingleton<FoodService>();
+builder.Services.AddSingleton<UserService>();
 builder.Services.AddAutoMapper(typeof(LRMapping));
 
 builder.Services.AddControllers();

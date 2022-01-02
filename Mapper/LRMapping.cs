@@ -9,5 +9,10 @@ public class LRMapping : Profile
     public LRMapping()
     {
         CreateMap<FoodDTO, Food>();
+
+        CreateMap<UserForLogin, User>();
+
+        CreateMap<UserForRegister, User>()
+            .ForMember(u => u.Role, prop => prop.MapFrom(c => "customer"));
     }
 }
