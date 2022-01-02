@@ -8,4 +8,8 @@ public interface IAuthenticationManager
     IEnumerable<Claim> GetClaims(User _user);
 
     string CreateAccessToken(IEnumerable<Claim> claims);
+
+    string CreateRefreshToken();
+
+    ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
 }
