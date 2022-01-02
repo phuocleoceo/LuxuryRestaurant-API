@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using LuxuryRestaurantAPI.Authentication;
 using LuxuryRestaurantAPI.Service;
 using LuxuryRestaurantAPI.Models;
@@ -67,5 +68,62 @@ public class AuthenticationController : ControllerBase
             RefreshToken = refreshToken,
             User = userInfor
         });
+    }
+
+    [HttpPost("refresh")]
+    public async Task<IActionResult> Refresh(TokenDTO tokenDTO)
+    {
+        if (tokenDTO == null)
+        {
+            return BadRequest("Invalid client request");
+        }
+
+        string accessToken = tokenDTO.AccessToken;
+        string refreshToken = tokenDTO.RefreshToken;
+        ClaimsPrincipal principal = _authManager.GetPrincipalFromExpiredToken(accessToken);
+        string username = principal.Identity.Name;
+
+        User _user = await _userService.GetByUserNameAsync(username);
+        if (_user == null || _user.RefreshToken != refreshToken ||
+            _user.RefreshTokenExpiryTime <= DateTime.Now)
+        {
+            return BadRequest("Invalid client request or refresh token expired");
+        }
+
+        string newAccessToken = _authManager.CreateAccessToken(principal.Claims);
+        string newRefreshToken = _authManager.CreateRefreshToken();
+        _user.RefreshToken = newRefreshToken; // Not change ExpireDay, it's only changed when Re-Login or Revoke
+        await _userService.UpdateAsync(_user.Id, _user);
+
+        var userInfor = new
+        {
+            Id = _user.Id,
+            Displayname = _user.Displayname,
+            Username = _user.Username,
+            Role = _user.Role
+        };
+        return Ok(new
+        {
+            AccessToken = newAccessToken,
+            RefreshToken = newRefreshToken,
+            User = userInfor
+        });
+    }
+
+    [HttpPost("revoke")]
+    [Authorize]
+    public async Task<IActionResult> Revoke()
+    {
+        string username = User.Identity.Name;
+        User _user = await _userService.GetByUserNameAsync(username);
+        if (_user == null)
+        {
+            return BadRequest("Revoke refresh token fail");
+        }
+
+        _user.RefreshToken = null;
+        _user.RefreshTokenExpiryTime = new DateTime();
+        await _userService.UpdateAsync(_user.Id, _user);
+        return NoContent();
     }
 }

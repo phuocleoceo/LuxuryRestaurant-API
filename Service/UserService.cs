@@ -27,7 +27,6 @@ public class UserService
                     .FirstOrDefaultAsync();
 
         if (user is null) return null;
-        user.Password = "";
         return user;
     }
 
@@ -39,6 +38,11 @@ public class UserService
     public async Task<User> GetAsync(string id)
     {
         return await _userCollection.Find(c => c.Id == id).FirstOrDefaultAsync();
+    }
+
+    public async Task<User> GetByUserNameAsync(string Username)
+    {
+        return await _userCollection.Find(c => c.Username == Username).FirstOrDefaultAsync();
     }
 
     public async Task CreateAsync(User newUser)

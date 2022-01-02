@@ -1,3 +1,4 @@
+using LuxuryRestaurantAPI.Extension;
 using LuxuryRestaurantAPI.Models;
 using LuxuryRestaurantAPI.DTO;
 using AutoMapper;
@@ -13,6 +14,7 @@ public class LRMapping : Profile
         CreateMap<UserForLogin, User>();
 
         CreateMap<UserForRegister, User>()
-            .ForMember(u => u.Role, prop => prop.MapFrom(c => "customer"));
+            .ForMember(u => u.Role, prop => prop.MapFrom(c => "customer"))
+            .ForMember(u => u.Password, prop => prop.MapFrom(c => c.Password.GetMD5()));
     }
 }
