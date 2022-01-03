@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
 using LuxuryRestaurantAPI.Authentication;
+using LuxuryRestaurantAPI.Extension;
 using LuxuryRestaurantAPI.Service;
 using LuxuryRestaurantAPI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +11,7 @@ namespace LuxuryRestaurantAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize(Roles = Constant.Role_Admin)]
 public class UserController : ControllerBase
 {
     private readonly UserService _userService;
@@ -27,6 +30,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("{id:length(24)}")]
+    [AllowAnonymous]
     public async Task<ActionResult<User>> GetUserInfor(string id)
     {
         User user = await _userService.GetAsync(id);
@@ -39,6 +43,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPut("{id:length(24)}")]
+    [AllowAnonymous]
     public async Task<IActionResult> UpdateUserInfor(string id, UserForRegister updateUserReg)
     {
         User user = await _userService.GetAsync(id);

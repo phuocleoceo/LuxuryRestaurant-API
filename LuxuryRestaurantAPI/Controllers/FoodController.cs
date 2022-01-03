@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authorization;
+using LuxuryRestaurantAPI.Extension;
 using LuxuryRestaurantAPI.Service;
 using LuxuryRestaurantAPI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +10,7 @@ namespace LuxuryRestaurantAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize(Roles = Constant.Role_Admin)]
 public class FoodController : ControllerBase
 {
     private readonly FoodService _foodService;
@@ -19,12 +22,14 @@ public class FoodController : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<List<Food>> GetAll()
     {
         return await _foodService.GetAllAsync();
     }
 
     [HttpGet("{id:length(24)}")]
+    [AllowAnonymous]
     public async Task<ActionResult<Food>> GetOne(string id)
     {
         Food food = await _foodService.GetAsync(id);

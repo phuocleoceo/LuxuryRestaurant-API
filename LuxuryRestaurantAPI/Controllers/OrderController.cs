@@ -1,13 +1,14 @@
+using Microsoft.AspNetCore.Authorization;
 using LuxuryRestaurantAPI.Service;
 using LuxuryRestaurantAPI.Models;
 using Microsoft.AspNetCore.Mvc;
-using LuxuryRestaurantAPI.DTO;
 using System.Net;
 
 namespace LuxuryRestaurantAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class OrderController : ControllerBase
 {
     private readonly OrderService _orderService;
