@@ -35,82 +35,6 @@ section {
         background: #fff;
     }
 
-.sub-heading {
-    text-align: center;
-    color: var(--green);
-    font-size: 2rem;
-    padding-top: 1rem;
-}
-
-.heading {
-    text-align: center;
-    color: var(--black);
-    font-size: 3rem;
-    padding-bottom: 2rem;
-    text-transform: uppercase;
-}
-
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgb(255, 255, 255);
-    padding: 1rem 7%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-    box-shadow: var(--box-shadow);
-}
-
-    header .logo {
-        color: var(--black);
-        font-size: 2.5rem;
-        font-weight: bolder;
-    }
-
-        header .logo i {
-            color: var(--green);
-        }
-
-    header .navbar a {
-        font-size: 2rem;
-        border-radius: 1rem;
-        padding: 0.5rem 1.5rem;
-        color: var(--light-color);
-    }
-
-        header .navbar a.active,
-        header .navbar a:hover {
-            color: rgb(241, 240, 240);
-            background: var(--green);
-        }
-
-    header .icons i,
-    header .icons a {
-        cursor: pointer;
-        margin-left: 0.5rem;
-        height: 4.5rem;
-        line-height: 4.5rem;
-        width: 4.5rem;
-        text-align: center;
-        font-size: 1.7rem;
-        color: var(--black);
-        border-radius: 50%;
-        background: #eee;
-    }
-
-        header .icons i:hover,
-        header .icons a:hover {
-            color: #fff;
-            background: var(--green);
-            transform: rotate(360deg);
-        }
-
-    header .icons #menu-bars {
-        display: none;
-    }
 
 .home .home-slider .slide {
     display: flex;
@@ -149,54 +73,13 @@ header {
         line-height: 1.5;
     }
 
-.swiper-pagination-bullet-active {
-    background: var(--green);
-}
-
 @media (max-width: 450px) {
     html {
         font-size: 50%;
     }
-
-    .dishes .box-container .box img {
-        height: auto;
-        width: 100%;
-    }
-
-    .order form .inputBox .input {
-        width: 100%;
-    }
 }
 
 @media (max-width: 768px) {
-    header .icons #menu-bars {
-        display: inline-block;
-    }
-
-    header .navbar {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: #fff;
-        border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
-        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
-        padding: 1rem;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    }
-
-        header .navbar.active {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-        }
-
-        header .navbar a {
-            display: block;
-            padding: 1.5rem;
-            margin: 1rem;
-            font-size: 2rem;
-            background: rgb(230, 227, 227);
-        }
-
     .home .home-slider .slide .content h3 {
         font-size: 5rem;
     }
