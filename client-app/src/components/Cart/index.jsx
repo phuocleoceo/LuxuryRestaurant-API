@@ -1,18 +1,27 @@
-import { useSelector } from 'react-redux';
+import { INCREASE_QUANTITY, DECREASE_QUANTITY, REMOVE_CART } from '../../redux/slices/cartSlice';
+import { useSelector, useDispatch } from 'react-redux';
 import React from 'react';
 
 export default function Cart()
 {
+    const dispatch = useDispatch();
     const cart = useSelector(state => state.cart);
 
-    const handleMinus = (foodId) =>
+    const handleMinus = async (foodId) =>
     {
-        alert(foodId);
+        await dispatch(DECREASE_QUANTITY(foodId));
     }
-    const handlePlus = (foodId) =>
+
+    const handlePlus = async (foodId) =>
     {
-        alert(foodId);
+        await dispatch(INCREASE_QUANTITY(foodId));
     }
+
+    const handleRemove = async (foodId) =>
+    {
+        await dispatch(REMOVE_CART(foodId));
+    }
+
     return (
         <section className="shopping-cart-container">
             <div className="products-container">
@@ -22,7 +31,7 @@ export default function Cart()
                         cart.count > 0 &&
                         cart.foodInCart.map(c => (
                             <div className="box" key={c.id}>
-                                <i className="fas fa-times"></i>
+                                <i className="fas fa-times" onClick={() => handleRemove(c.id)}></i>
                                 <img src="https://mcdn2-coolmate.cdn.vccloud.vn/uploads/October2021/meme-cheems-25.jpg" alt="" />
                                 <div className="content">
                                     <h3>ahihi</h3>

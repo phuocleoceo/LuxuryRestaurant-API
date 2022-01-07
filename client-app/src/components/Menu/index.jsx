@@ -24,7 +24,7 @@ export default function Menu()
 
     const handleAddToCart = async (foodId) =>
     {
-        const check = await dispatch(ADD_TO_CART({ id: foodId }));
+        await dispatch(ADD_TO_CART({ id: foodId }));
         toast.success("Đã thêm vào giỏ");
     }
 

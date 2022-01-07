@@ -25,7 +25,7 @@ export const cartSlice = createSlice({
             SaveToLocalStorage(state);
             return state;
         },
-        DELETE_CART: (state, action) =>
+        REMOVE_CART: (state, action) =>
         {
             const deleteID = action.payload;
             state = {
@@ -65,6 +65,6 @@ export const cartSlice = createSlice({
     },
 });
 
-export const { ADD_TO_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, DELETE_CART } = cartSlice.actions
+export const { ADD_TO_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, REMOVE_CART } = cartSlice.actions
 export default cartSlice.reducer
 
