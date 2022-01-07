@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from './components/Home';
 import Menu from './components/Menu';
+import Login from './components/Login';
 import './App.css';
 
 function App()
@@ -13,10 +14,13 @@ function App()
       <BrowserRouter>
         <Navigation />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="menu" element={<Menu />} />
-        </Routes>
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </div>
       </BrowserRouter>
 
 

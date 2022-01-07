@@ -1,26 +1,34 @@
 import { Link } from "react-router-dom";
-import './Navigation.css';
 import React from 'react';
 
 export default function Navigation()
 {
     return (
-        <header>
-            <a className="logo"><Link to="/">Luxury Restaurant</Link></a>
+        <header className="header">
+            <Link to="/">
+                <a href="#" className="logo">
+                    <i className="fas fa-utensils"></i>Luxury Restaurant
+                </a>
+            </Link>
+
             <nav className="navbar">
-                <a><Link to="/">Trang chủ</Link></a>
-                <a><Link to="/menu">Menu</Link></a>
-                <a><Link to="/manage">Quản lý</Link></a >
-            </nav >
-            <div className="icons">
-                <a style={{ fontSize: 20 }}>Admin</a>
-                <a className="fas fa-shopping-cart"></a>
-                <a className="fas fa-sign-out-alt"></a>
-            </div>
+                <Link to="/"><a>Trang chủ</a></Link>
+                <Link to="/menu"><a>Menu</a></Link>
+                <Link to="/manage"><a>Quản lý</a></Link>
+            </nav>
 
             <div className="icons">
-                <a className="fas fa-shopping-cart"></a>
-                <a className="fas fa-user"> </a>
+                <a style={{ fontSize: 20 }}>Admin</a>
+                <div id="menu-btn" className="fas fa-bars"></div>
+                <Link to="/cart">
+                    <div id="cart-btn" className="fas fa-shopping-cart"></div>
+                </Link>
+                <Link to="/login">
+                    <div id="login-btn" className="fas fa-user"></div>
+                </Link>
+                <Link to="/logout">
+                    <div id="logout-btn" className="fas fa-sign-out-alt"></div>
+                </Link>
             </div>
         </header>
     )

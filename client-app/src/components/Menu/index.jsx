@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { GET_FOOD } from '../../api/apiFood';
-import './Menu.css';
-
 
 export default function Menu()
 {
@@ -20,7 +18,11 @@ export default function Menu()
     }, []);
 
     return (
-        <section className="menu" id="menu">
+        <section className="blogs" id="blogs">
+            <div className="heading">
+                <span>Menu</span>
+            </div>
+
             <div className="box-container">
                 {
                     listFood.map(f => (
@@ -29,18 +31,24 @@ export default function Menu()
                                 <img src={f.imagePath} alt="" />
                             </div>
                             <div className="content">
+                                <div className="tags">
+                                    <a><i className="fas fa-tag"></i> Ngon / </a>
+                                    <a><i className="fas fa-tag"></i> Rẻ / </a>
+                                    <a><i className="fas fa-tag"></i> Sang trọng  </a>
+                                </div>
                                 <h3>{f.name}</h3>
                                 <p>{f.description}</p>
-                                <button className="btn">
-                                    Thêm vào giỏ
-                                    <i className="fas fa-cart-plus"></i>
+
+                                <button>
+                                    <a href="#" className="btn">
+                                        <i className="fas fa-cart-plus"></i>Thêm vào giỏ
+                                    </a>
                                 </button>
-                                <span className="price">{f.price / 1000} K</span>
+                                <span className="price">{f.price / 1000}K VNĐ</span>
                             </div>
                         </div>
                     ))
                 }
-
             </div>
         </section>
     )
