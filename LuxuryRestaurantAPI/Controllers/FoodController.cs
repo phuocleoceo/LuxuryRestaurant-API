@@ -28,6 +28,14 @@ public class FoodController : ControllerBase
         return await _foodService.GetAllAsync();
     }
 
+    [HttpGet("/api/GetList")]
+    [AllowAnonymous]
+    public async Task<List<Food>> GetList(string listId)
+    {
+        string[] foodId = listId.Split(",");
+        return await _foodService.GetListAsync(foodId);
+    }
+
     [HttpGet("{id:length(24)}")]
     [AllowAnonymous]
     public async Task<ActionResult<Food>> GetOne(string id)

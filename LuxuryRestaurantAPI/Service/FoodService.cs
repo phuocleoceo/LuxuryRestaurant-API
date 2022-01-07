@@ -22,6 +22,11 @@ public class FoodService
         return await _foodCollection.Find(_ => true).ToListAsync();
     }
 
+    public async Task<List<Food>> GetListAsync(string[] foodId)
+    {
+        return await _foodCollection.Find(c => foodId.Contains(c.Id)).ToListAsync();
+    }
+
     public async Task<Food> GetAsync(string id)
     {
         return await _foodCollection.Find(c => c.Id == id).FirstOrDefaultAsync();
