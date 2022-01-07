@@ -6,19 +6,19 @@ export default function Navigation()
     return (
         <header className="header">
             <Link to="/">
-                <a href="#" className="logo">
+                <div className="logo">
                     <i className="fas fa-utensils"></i>Luxury Restaurant
-                </a>
+                </div>
             </Link>
 
             <nav className="navbar">
-                <Link to="/"><a>Trang chủ</a></Link>
-                <Link to="/menu"><a>Menu</a></Link>
-                <Link to="/manage"><a>Quản lý</a></Link>
+                <Link to="/"><div className="link">Trang chủ</div></Link>
+                <Link to="/menu"><div className="link">Menu</div></Link>
+                <Link to="/manage"><div className="link">Quản lý</div></Link>
             </nav>
 
             <div className="icons">
-                <a style={{ fontSize: 20 }}>Admin</a>
+                <span style={{ fontSize: 20 }}>Admin</span>
                 <div id="menu-btn" className="fas fa-bars"></div>
                 <Link to="/cart">
                     <div id="cart-btn" className="fas fa-shopping-cart"></div>

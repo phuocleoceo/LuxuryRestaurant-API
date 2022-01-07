@@ -13,8 +13,8 @@ export default function Login()
                     <label>remember me</label>
                 </div>
                 <input type="submit" value="login now" className="btn" />
-                <p>forget password? <a href="#">click here</a></p>
-                <p>don't have an account? <a href="#">create one</a></p>
+                <p>forget password? <a href="/">click here</a></p>
+                <p>don't have an account? <a href="/">create one</a></p>
             </form>
 
         </div>
