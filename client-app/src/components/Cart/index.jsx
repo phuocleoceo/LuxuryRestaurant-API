@@ -1,15 +1,17 @@
+import { useSelector } from 'react-redux';
 import React from 'react';
 
 export default function Cart()
 {
+    const cart = useSelector(state => state.cart);
 
-    const handleMinus = () =>
+    const handleMinus = (foodId) =>
     {
-        alert("-");
+        alert(foodId);
     }
-    const handlePlus = () =>
+    const handlePlus = (foodId) =>
     {
-        alert("+");
+        alert(foodId);
     }
     return (
         <section className="shopping-cart-container">
@@ -17,16 +19,17 @@ export default function Cart()
                 <h3 className="title">Giỏ hàng</h3>
                 <div className="box-container">
                     {
-                        [1, 2, 3, 4, 5].map(c => (
-                            <div className="box" key={c}>
+                        cart.count > 0 &&
+                        cart.foodInCart.map(c => (
+                            <div className="box" key={c.id}>
                                 <i className="fas fa-times"></i>
                                 <img src="https://mcdn2-coolmate.cdn.vccloud.vn/uploads/October2021/meme-cheems-25.jpg" alt="" />
                                 <div className="content">
                                     <h3>ahihi</h3>
                                     <span> Số lượng : </span> <br />
-                                    <button className="btnQuantity" onClick={handleMinus}>-</button>
-                                    <span className="quantity">27</span>
-                                    <button className="btnQuantity" onClick={handlePlus}>+</button>
+                                    <button className="btnQuantity" onClick={() => handleMinus(c.id)}>-</button>
+                                    <span className="quantity">{c.quantity}</span>
+                                    <button className="btnQuantity" onClick={() => handlePlus(c.id)}>+</button>
                                     <br />
                                     <span> Giá : </span>
                                     <span className="price"> 10000 </span>

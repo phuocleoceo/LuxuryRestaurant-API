@@ -28,7 +28,7 @@ public class FoodController : ControllerBase
         return await _foodService.GetAllAsync();
     }
 
-    [HttpGet("/api/GetList")]
+    [HttpGet("/api/Food/GetList")]
     [AllowAnonymous]
     public async Task<List<Food>> GetList(string listId)
     {

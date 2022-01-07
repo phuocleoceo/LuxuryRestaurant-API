@@ -1,8 +1,10 @@
+import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import React from 'react';
 
 export default function Navigation()
 {
+    const cart = useSelector(state => state.cart);
     return (
         <header className="header">
             <Link to="/">
@@ -21,7 +23,11 @@ export default function Navigation()
                 <span style={{ fontSize: 20 }}>Admin</span>
                 <div id="menu-btn" className="fas fa-bars"></div>
                 <Link to="/cart">
-                    <div id="cart-btn" className="fas fa-shopping-cart"></div>
+                    <div id="cart-btn" className="fas fa-shopping-cart">
+                        <span style={{ color: "red", fontSize: 17 }}>
+                            {cart.count > 0 ? cart.count : "0"}
+                        </span>
+                    </div>
                 </Link>
                 <Link to="/login">
                     <div id="login-btn" className="fas fa-user"></div>

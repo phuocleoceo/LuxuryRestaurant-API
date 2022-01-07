@@ -1,13 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-const init = {
-    count: 0,
-    foodInCart: []
-};
+import { GetFromLocalStorage, SaveToLocalStorage } from '../../extension/CartLS';
 
 export const cartSlice = createSlice({
     name: "cart",
-    initialState: init,
+    initialState: GetFromLocalStorage(),
     reducers: {
         ADD_TO_CART: (state, action) =>
         {
@@ -26,21 +22,25 @@ export const cartSlice = createSlice({
             {
                 state.foodInCart[index].quantity++;
             }
+            SaveToLocalStorage(state);
             return state;
         },
         DELETE_CART: (state, action) =>
         {
             const deleteID = action.payload;
-            return {
+            state = {
                 count: state.count - 1,
                 foodInCart: state.foodInCart.filter(c => c.id !== deleteID)
             };
+            SaveToLocalStorage(state);
+            return state;
         },
         INCREASE_QUANTITY: (state, action) =>
         {
             const id = action.payload;
             const index = state.foodInCart.findIndex(food => food.id === id);
             state.foodInCart[index].quantity++;
+            SaveToLocalStorage(state);
             return state;
         },
         DECREASE_QUANTITY: (state, action) =>
@@ -59,6 +59,7 @@ export const cartSlice = createSlice({
                     foodInCart: state.foodInCart.filter(c => c.id !== id)
                 };
             }
+            SaveToLocalStorage(state);
             return state;
         }
     },

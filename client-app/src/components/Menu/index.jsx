@@ -1,10 +1,14 @@
+import { ADD_TO_CART } from '../../redux/slices/cartSlice';
 import React, { useEffect, useState } from 'react';
 import { GET_FOOD } from '../../api/apiFood';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 export default function Menu()
 {
+    const dispatch = useDispatch();
     const [listFood, setListFood] = useState([]);
+
     useEffect(() =>
     {
         const getFd = async () =>
@@ -18,8 +22,9 @@ export default function Menu()
         getFd();
     }, []);
 
-    const handleAddToCart = () =>
+    const handleAddToCart = async (foodId) =>
     {
+        const check = await dispatch(ADD_TO_CART({ id: foodId }));
         toast.success("Đã thêm vào giỏ");
     }
 
@@ -45,7 +50,7 @@ export default function Menu()
                                 <h3>{f.name}</h3>
                                 <p>{f.description}</p>
 
-                                <button className="btn" onClick={handleAddToCart}>
+                                <button className="btn" onClick={() => handleAddToCart(f.id)}>
                                     <i className="fas fa-cart-plus"></i>Thêm vào giỏ
                                 </button>
                                 <span className="price">{f.price / 1000}K VNĐ</span>
