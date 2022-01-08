@@ -1,7 +1,8 @@
 import { INCREASE_QUANTITY, DECREASE_QUANTITY, REMOVE_CART } from '../../redux/slices/cartSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { GET_LIST } from '../../api/apiFood';
 import React, { useState, useEffect } from 'react';
+import { numberWithCommas } from '../../extension/FormatData';
+import { GET_LIST } from '../../api/apiFood';
 
 export default function Cart()
 {
@@ -42,7 +43,7 @@ export default function Cart()
         {
             sum += f.price * f.quantity;
         });
-        setTotal(sum);
+        setTotal(numberWithCommas(sum));
     }, [food]);
 
     const handleMinus = (foodId) => dispatch(DECREASE_QUANTITY(foodId));
