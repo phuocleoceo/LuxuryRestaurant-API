@@ -2,12 +2,15 @@ import { useNavigate } from 'react-router-dom';
 import { POST_FOOD } from '../../api/apiFood';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function CreateFood()
 {
     let navigate = useNavigate();
     const { register, handleSubmit } = useForm();
+    const [image, setImage] = useState("");
+
+    const handleChangeImage = (e) => setImage(e.target.value);
 
     const onSubmit = async (data) =>
     {
@@ -45,13 +48,13 @@ export default function CreateFood()
                     <div className="inputBox">
                         <span>Hình ảnh :</span>
                         <input type="text" placeholder="Ảnh món ăn..."
-                            {...register("imagePath")} />
+                            {...register("imagePath")} onChange={handleChangeImage} />
                         <span>Mô tả :</span>
                         <textarea placeholder="Thông tin món ăn..." cols="30" rows="10"
                             {...register("description")}></textarea>
                     </div>
                     <div className="inputBox">
-                        <img src='https://vnn-imgs-f.vgcloud.vn/2021/09/07/09/chu-meo-noi-tieng-mang-xa-hoi-voi-phong-cach-thoi-trang-sanh-dieu.jpeg' alt='' />
+                        <img src={image} alt='' />
                     </div>
                 </div>
                 <input type="submit" value="Tạo món ăn" className="btn" />
