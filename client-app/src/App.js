@@ -1,6 +1,7 @@
 import { CheckLoggedIn } from './redux/slices/authenticationSlice';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateFood from './components/Manage/CreateFood';
+import NotFound from './components/Other/NotFound';
 import Navigation from './components/Navigation';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
