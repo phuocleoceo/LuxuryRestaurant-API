@@ -30,6 +30,7 @@ export default function Cart()
                 ));
                 setFood(foodList);
             }
+            else setFood([]);
         };
         getFoodInCart();
     }, [cart]);
