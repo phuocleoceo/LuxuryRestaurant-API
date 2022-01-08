@@ -1,7 +1,11 @@
+import { CheckLoggedIn } from './redux/slices/authenticationSlice';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import Manage from './components/Manage';
 import Login from './components/Login';
 import Home from './components/Home';
 import Cart from './components/Cart';
@@ -10,6 +14,13 @@ import './App.css';
 
 function App()
 {
+  const dispatch = useDispatch();
+
+  useEffect(() =>
+  {
+    dispatch(CheckLoggedIn());
+  }, [dispatch]);
+
   return (
     <>
       <BrowserRouter>
@@ -18,6 +29,7 @@ function App()
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/manage" element={<Manage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
