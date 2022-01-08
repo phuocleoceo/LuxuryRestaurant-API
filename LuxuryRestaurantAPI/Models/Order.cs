@@ -15,7 +15,7 @@ public class Order
 
     public DateTime OrderDate { get; set; }
 
-    public List<Food> Foods { get; set; }
+    public List<OrderDetail> OrderDetails { get; set; }
 
     // Change infor when CheckOut
     public string Name { get; set; }

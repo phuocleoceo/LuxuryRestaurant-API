@@ -16,5 +16,7 @@ public class LRMapping : Profile
         CreateMap<UserForRegister, User>()
             .ForMember(u => u.Role, prop => prop.MapFrom(c => "customer"))
             .ForMember(u => u.Password, prop => prop.MapFrom(c => c.Password.GetMD5()));
+
+        CreateMap<OrderDTO, Order>();
     }
 }
