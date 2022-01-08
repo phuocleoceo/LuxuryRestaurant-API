@@ -67,8 +67,9 @@ export default function Manage()
                                         <td>{f.description}</td>
                                         <td>
                                             <span className="action_btn">
-                                                <span className="fas fa-edit"
-                                                    onClick={() => alert(f.id)}></span>
+                                                <Link to={"/manage/edit/" + f.id}>
+                                                    <span className="fas fa-edit"></span>
+                                                </Link>
 
                                                 <span className="fas fa-trash-alt"
                                                     onClick={() => handleDelete(f.id)}></span>

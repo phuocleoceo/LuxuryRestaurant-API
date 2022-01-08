@@ -1,7 +1,7 @@
 import { INCREASE_QUANTITY, DECREASE_QUANTITY, REMOVE_CART } from '../../redux/slices/cartSlice';
+import { numberWithCommas } from '../../extension/FormatData';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import { numberWithCommas } from '../../extension/FormatData';
 import { GET_LIST } from '../../api/apiFood';
 
 export default function Cart()
@@ -49,9 +49,7 @@ export default function Cart()
 
     const handleMinus = (foodId) => dispatch(DECREASE_QUANTITY(foodId));
 
-
     const handlePlus = (foodId) => dispatch(INCREASE_QUANTITY(foodId));
-
 
     const handleRemove = (foodId) => dispatch(REMOVE_CART(foodId));
 
@@ -82,13 +80,18 @@ export default function Cart()
                 </div>
             </div>
 
-            <div className="cart-total">
-                <h3 className="title"> Tổng cộng </h3>
-                <div className="box">
-                    <h3 className="total"> Số tiền : <span>{total} VNĐ</span> </h3>
-                    <button onClick={() => alert(user.id)} className="btn">Xác nhận đặt món</button>
+            {
+                food.length > 0 &&
+                <div className="cart-total">
+                    <h3 className="title"> Tổng cộng </h3>
+                    <div className="box">
+                        <h3 className="total"> Số tiền : <span>{total} VNĐ</span> </h3>
+                        <button onClick={() => alert(user.id)} className="btn">
+                            Xác nhận đặt món
+                        </button>
+                    </div>
                 </div>
-            </div>
+            }
         </section >
     )
 }
