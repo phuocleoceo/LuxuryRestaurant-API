@@ -34,20 +34,18 @@ export default function Navigation()
             </nav>
 
             <div className="icons">
+                {user.id && <span style={{ fontSize: 20 }}>{user.displayname}</span>}
+                <div id="menu-btn" className="fas fa-bars"></div>
+                <Link to="/cart">
+                    <div id="cart-btn" className="fas fa-shopping-cart">
+                        <span style={{ color: "red", fontSize: 17 }}>
+                            {cart.count > 0 ? cart.count : "0"}
+                        </span>
+                    </div>
+                </Link>
                 {
                     user.id ?
-                        <>
-                            <span style={{ fontSize: 20 }}>{user.displayname}</span>
-                            <div id="menu-btn" className="fas fa-bars"></div>
-                            <Link to="/cart">
-                                <div id="cart-btn" className="fas fa-shopping-cart">
-                                    <span style={{ color: "red", fontSize: 17 }}>
-                                        {cart.count > 0 ? cart.count : "0"}
-                                    </span>
-                                </div>
-                            </Link>
-                            <div id="logout-btn" onClick={handleLogout} className="fas fa-sign-out-alt"></div>
-                        </>
+                        <div id="logout-btn" onClick={handleLogout} className="fas fa-sign-out-alt"></div>
                         :
                         <Link to="/login">
                             <div id="login-btn" className="fas fa-user"></div>

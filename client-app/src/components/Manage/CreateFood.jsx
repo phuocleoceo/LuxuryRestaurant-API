@@ -3,8 +3,35 @@ import React from 'react';
 export default function CreateFood()
 {
     return (
-        <div>
-            <img src='https://scontent.fdad3-3.fna.fbcdn.net/v/t39.30808-6/271559656_1031822170731189_7312580446316739492_n.jpg?_nc_cat=111&_nc_rgb565=1&ccb=1-5&_nc_sid=825194&_nc_ohc=z_2oQrlTTnEAX9-TPnT&_nc_ht=scontent.fdad3-3.fna&oh=00_AT9mX81cPZMzHnl1wxczw0BAXI4vK-TfKkldPPKedyvluA&oe=61DE588D' alt='' />
-        </div>
+        <section className="order" id="order">
+            <div className="heading">
+                <span>Tạo món ăn</span>
+            </div>
+
+            <form>
+                <div className="flex">
+                    <div className="inputBox">
+                        <span>Tên :</span>
+                        <input type="text" placeholder="Tên món ăn..." />
+                    </div>
+                    <div className="inputBox">
+                        <span>Đơn giá :</span>
+                        <input type="text" placeholder="Giá món ăn..." />
+                    </div>
+                </div>
+                <div className="flex">
+                    <div className="inputBox">
+                        <span>Hình ảnh :</span>
+                        <input type="text" placeholder="Ảnh món ăn..." />
+                        <span>Mô tả :</span>
+                        <textarea placeholder="Thông tin món ăn..." cols="30" rows="10"></textarea>
+                    </div>
+                    <div className="inputBox">
+                        <img src='https://vnn-imgs-f.vgcloud.vn/2021/09/07/09/chu-meo-noi-tieng-mang-xa-hoi-voi-phong-cach-thoi-trang-sanh-dieu.jpeg' alt='' />
+                    </div>
+                </div>
+                <input type="submit" value="Tạo món ăn" className="btn" />
+            </form>
+        </section>
     )
 }

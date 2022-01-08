@@ -39,7 +39,7 @@ section {
 
 .heading {
   text-align: center;
-  padding-bottom: 2rem;
+  padding-bottom: 0.7rem;
 }
 
 .heading span {
@@ -416,32 +416,6 @@ section {
 }
 
 /*-------------------------------------- Order -----------------------------------------*/
-.order .icons-container {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (minmax(30rem, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.order .icons-container .icons {
-  border-radius: .5rem;
-  padding: 2rem;
-  text-align: center;
-  background: #f7f7f7;
-}
-
-.order .icons-container .icons img {
-  height: 10rem;
-}
-
-.order .icons-container .icons h3 {
-  font-size: 2rem;
-  color: #130f40;
-  margin-top: .5rem;
-}
-
 .order form {
   background: #f7f7f7;
   padding: 2rem;
@@ -464,6 +438,12 @@ section {
   padding: .7rem 0;
 }
 
+.order form .flex .inputBox img{
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+}
+
 .order form .flex span {
   font-size: 1.7rem;
   color: #666;
@@ -473,7 +453,6 @@ section {
   width: 100%;
   margin-top: .5rem;
   padding: 1rem 1.2rem;
-  width: 100%;
   border-radius: .5rem;
   font-size: 1.6rem;
   text-transform: none;
@@ -483,12 +462,6 @@ section {
 .order form .flex textarea {
   height: 20rem;
   resize: none;
-}
-
-.order form .flex .map {
-  height: 100%;
-  width: 100%;
-  border-radius: .5rem;
 }
 
 /*-------------------------------------- Blog -----------------------------------------*/

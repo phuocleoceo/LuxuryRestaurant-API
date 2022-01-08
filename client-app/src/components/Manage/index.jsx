@@ -21,7 +21,9 @@ export default function Manage()
     return (
         <section className="manage-container">
             <div className="table-Container">
-                <p className="title">Quản Lý Món Ăn</p>
+                <p className="title heading">
+                    <span>Quản Lý Món Ăn</span>
+                </p>
                 <Link to="/manage/create">
                     <span className="upsert">
                         <i className="fas fa-plus"></i> &nbsp;
