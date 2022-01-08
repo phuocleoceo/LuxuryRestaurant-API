@@ -587,7 +587,121 @@ section {
   line-height: 2;
 }
 
+/*-------------------------------------- Manage -----------------------------------------*/
+.upsert {
+    font-size: 1.2rem;
+    color: #fff;
+    background: #000000;
+    border-radius: 0.5rem;
+    padding: 0.8rem;
+    margin-left: 8%;
+    cursor: pointer;
+}
 
+.manage-container {
+    top: 8.5 rem;
+    left: 0;
+    right: 0;
+    height: calc(100vh-8.5rem);
+    background-color: white;
+    overflow-y: auto;
+    padding-top: 0.5rem;
+}
+
+    .manage-container .title {
+        margin-bottom: 1.3rem;
+        font-size: 2.5rem;
+        padding: 1rem;
+        color: #130f40;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    .manage-container .table-Container {
+        border: 0.1rem solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.5rem;
+        background-color: white;
+    }
+
+        .manage-container .table-Container .table-box {
+            margin-top:1rem;
+            font-size: 1.3rem;
+            color: #444;
+            white-space: nowrap;
+            border-collapse: collapse;
+            text-align: center;
+            padding-bottom: 2rem;
+        }
+
+table {
+    width: 85%;
+    font-size: 1.4rem;
+    color: #444;
+    white-space: nowrap;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    table th {
+        background-color: #27ae60;
+        color: #fff;
+        padding: 1.5rem;
+    }
+
+    table td {
+        border: 1px solid #00000017;
+        padding: 1rem 1.5rem;
+    }
+
+    table tr {
+        background-color: #fff;
+        transition: 0.3s ease-in-out;
+    }
+
+tr:nth-child(even) {
+    background-color: rgb(238, 238, 238);
+}
+
+tr:hover {
+    filter: drop-shadow(0px 2px 6px #0002);
+}
+
+.manage-container .table-Container .table-box .action_btn {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+    .manage-container .table-Container .table-box .action_btn span {
+        text-decoration: none;
+        color: #444;
+        background: #fff;
+        border: 1px solid;
+        display: inline-block;
+        padding: 7px 20px;
+        font-weight: bold;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+    }
+
+        .manage-container .table-Container .table-box .action_btn span:nth-child(1) {
+            border-color: #26a69a;
+        }
+
+        .manage-container .table-Container .table-box .action_btn span:nth-child(2) {
+            border-color: orange;
+        }
+
+        .manage-container .table-Container .table-box .action_btn span:hover {
+            box-shadow: 0 3px 8px #0003;
+        }
+
+
+/*--------------------------------------------------------------------------------------*/
 @media (max-width: 991px) {
   html {
     font-size: 55%;

@@ -36,6 +36,7 @@ export default function Menu()
 
             <div className="box-container">
                 {
+                    listFood.length > 0 &&
                     listFood.map(f => (
                         <div className="box" key={f.id}>
                             <div className="image">
