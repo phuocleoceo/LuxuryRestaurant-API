@@ -8,6 +8,7 @@ export default function Cart()
 {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart);
+    const user = useSelector(state => state.authentication);
     const [food, setFood] = useState([]);
     const [total, setTotal] = useState(0);
 
@@ -85,7 +86,7 @@ export default function Cart()
                 <h3 className="title"> Tổng cộng </h3>
                 <div className="box">
                     <h3 className="total"> Số tiền : <span>{total} VNĐ</span> </h3>
-                    <button className="btn">Xác nhận đặt món</button>
+                    <button onClick={() => alert(user.id)} className="btn">Xác nhận đặt món</button>
                 </div>
             </div>
         </section >

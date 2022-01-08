@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GET_FOOD } from '../../api/apiFood';
+import { Link } from "react-router-dom";
 
 export default function Manage()
 {
@@ -21,10 +22,12 @@ export default function Manage()
         <section className="manage-container">
             <div className="table-Container">
                 <p className="title">Quản Lý Món Ăn</p>
-                <span onClick={() => alert("hihi")} className="upsert">
-                    <i className="fas fa-plus"></i> &nbsp;
-                    Tạo món mới
-                </span>
+                <Link to="/manage/create">
+                    <span className="upsert">
+                        <i className="fas fa-plus"></i> &nbsp;
+                        Tạo món mới
+                    </span>
+                </Link>
                 <div className="table-box">
                     <table id="food-table">
                         <thead>
