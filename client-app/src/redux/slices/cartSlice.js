@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
 import { GetFromLocalStorage, SaveToLocalStorage } from '../../extension/CartLS';
+import { createSlice } from '@reduxjs/toolkit';
 
 export const cartSlice = createSlice({
     name: "cart",
