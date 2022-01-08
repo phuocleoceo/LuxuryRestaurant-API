@@ -16,12 +16,12 @@ export default function Login()
         const check = await dispatch(LoginAction(data));
         if (check.payload.Accepted)
         {
-            toast.success("Login Successfully");
+            toast.success("Đăng nhập thành công");
             navigate("/");
         }
         else
         {
-            toast.error("Login Failure");
+            toast.error("Đăng nhập thấT bại");
         }
     };
 
