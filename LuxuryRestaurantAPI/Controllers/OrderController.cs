@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
+using LuxuryRestaurantAPI.Extension;
 using LuxuryRestaurantAPI.Service;
 using LuxuryRestaurantAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using LuxuryRestaurantAPI.DTO;
 using System.Net;
 using AutoMapper;
-using LuxuryRestaurantAPI.Extension;
 
 namespace LuxuryRestaurantAPI.Controllers;
 

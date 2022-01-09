@@ -19,7 +19,8 @@ public class OrderService
 
     public async Task<List<Order>> GetAllAsync()
     {
-        return await _orderCollection.Find(_ => true).ToListAsync();
+        return await _orderCollection.Find(_ => true)
+                    .SortByDescending(c => c.OrderDate).ToListAsync();
     }
 
     public async Task<Order> GetOneAsync(string UserId)

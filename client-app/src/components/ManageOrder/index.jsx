@@ -1,5 +1,6 @@
 import { GET_ALL_ORDER } from '../../api/apiOrder';
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 
 export default function ManageOrder()
 {
@@ -44,8 +45,8 @@ export default function ManageOrder()
                                         <td>{o.phoneNumber}</td>
                                         <td>{o.address}</td>
                                         <td>{o.orderTotal}</td>
-                                        <td>{o.orderDate}</td>
-                                        <td>
+                                        <td>{moment(o.orderDate).format('DD/MM/YYYY , hh:mm a')}</td>
+                                        < td >
                                             <span className="action_btn">
                                                 <span className="fas fa-eye"></span>
                                             </span>
@@ -58,13 +59,5 @@ export default function ManageOrder()
                 </div>
             </div>
         </section>
-        // <div>
-        //     {
-        //         listOrder.length > 0 &&
-        //         listOrder.map(o => (
-        //             <h1>{o.userId}</h1>
-        //         ))
-        //     }
-        // </div>
     )
 }
