@@ -7,6 +7,7 @@ import NotFound from './components/Other/NotFound';
 import Navigation from './components/Navigation';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Checkout from './components/Checkout';
 import React, { useEffect } from 'react';
 import Manage from './components/Manage';
 import Login from './components/Login';
@@ -40,6 +41,10 @@ function App()
               <Route path="create" element={<CreateFood />} />
               <Route path="edit/:foodId" element={<EditFood />} />
             </Route>
+          }
+          {
+            user.id &&
+            <Route path="checkout" element={<Checkout />} />
           }
           <Route path="login" element={<Login />} />
           <Route path="cart" element={<Cart />} />

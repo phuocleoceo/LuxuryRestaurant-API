@@ -3,6 +3,7 @@ import { numberWithCommas } from '../../extension/FormatData';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import { GET_LIST } from '../../api/apiFood';
+import { Link } from "react-router-dom";
 
 export default function Cart()
 {
@@ -80,18 +81,18 @@ export default function Cart()
                 </div>
             </div>
 
-            {
-                food.length > 0 &&
-                <div className="cart-total">
-                    <h3 className="title"> Tổng cộng </h3>
-                    <div className="box">
-                        <h3 className="total"> Số tiền : <span>{total} VNĐ</span> </h3>
-                        <button onClick={() => alert(user.id)} className="btn">
-                            Xác nhận đặt món
-                        </button>
-                    </div>
+            <div className="cart-total">
+                <h3 className="title"> Tổng cộng </h3>
+                <div className="box">
+                    <h3 className="total"> Số tiền : <span>{total} VNĐ</span> </h3>
+                    {
+                        user.id &&
+                        <Link to="/checkout" className="btn">
+                            Tiến hành đặt món
+                        </Link>
+                    }
                 </div>
-            }
+            </div>
         </section >
     )
 }

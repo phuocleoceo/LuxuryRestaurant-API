@@ -18,18 +18,16 @@ export default function Navigation()
 
     return (
         <header className="header">
-            <Link to="/">
-                <div className="logo">
-                    <i className="fas fa-utensils"></i>Luxury Restaurant
-                </div>
+            <Link to="/" className="logo">
+                <i className="fas fa-utensils"></i>Luxury Restaurant
             </Link>
 
             <nav className="navbar">
-                <Link to="/"><div className="link">Trang chủ</div></Link>
-                <Link to="/menu"><div className="link">Menu</div></Link>
+                <Link to="/" className="link">Trang chủ</Link>
+                <Link to="/menu" className="link">Menu</Link>
                 {
                     user.role === "admin" &&
-                    <Link to="/manage"><div className="link">Quản lý</div></Link>
+                    <Link to="/manage" className="link">Quản lý</Link>
                 }
             </nav>
 
