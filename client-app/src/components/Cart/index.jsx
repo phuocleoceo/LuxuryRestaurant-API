@@ -86,8 +86,8 @@ export default function Cart()
                 <div className="box">
                     <h3 className="total"> Số tiền : <span>{total} VNĐ</span> </h3>
                     {
-                        user.id &&
-                        <Link to="/checkout" className="btn">
+                        (user.id && food.length > 0) &&
+                        <Link to="/checkout" state={{ food, total, user }} className="btn">
                             Tiến hành đặt món
                         </Link>
                     }

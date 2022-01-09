@@ -1,4 +1,10 @@
-import { GetFromLocalStorage, SaveToLocalStorage } from '../../extension/CartLS';
+import
+{
+    ClearLocalStorage,
+    GetFromLocalStorage,
+    SaveToLocalStorage, init
+} from '../../extension/CartLS';
+
 import { createSlice } from '@reduxjs/toolkit';
 
 export const cartSlice = createSlice({
@@ -61,10 +67,15 @@ export const cartSlice = createSlice({
             }
             SaveToLocalStorage(state);
             return state;
+        },
+        CLEAR_CART: (state, action) =>
+        {
+            ClearLocalStorage();
+            return init;
         }
     },
 });
 
-export const { ADD_TO_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, REMOVE_CART } = cartSlice.actions
+export const { ADD_TO_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, REMOVE_CART, CLEAR_CART } = cartSlice.actions
 export default cartSlice.reducer
 

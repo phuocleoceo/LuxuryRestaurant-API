@@ -21,8 +21,8 @@ public class OrderController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Create(OrderDTO newOrder)
+    [HttpPost("/api/Order/Checkout")]
+    public async Task<IActionResult> Checkout(OrderDTO newOrder)
     {
         Order order = _mapper.Map<Order>(newOrder);
         order.OrderDate = DateTime.Now;

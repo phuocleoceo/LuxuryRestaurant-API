@@ -1,16 +1,49 @@
+import { useLocation, useNavigate } from 'react-router-dom';
+import { CLEAR_CART } from '../../redux/slices/cartSlice';
+import { CHECK_OUT } from '../../api/apiOrder';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import React from 'react';
 
-export default function Checkout(props)
+export default function Checkout()
 {
-    const { register, handleSubmit } = useForm();
-    const user = useSelector(state => state.authentication);
+    let navigate = useNavigate();
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const { food, total, user } = location.state;
 
-    const onSubmit = (data) =>
+    const { register, handleSubmit } = useForm();
+
+    const onSubmit = async (data) =>
     {
-        console.log(data, user.id);
+        // Get list food from Cart
+        const listFood = food.map(f => ({
+            foodId: f.id,
+            foodName: f.name,
+            price: f.price,
+            quantity: f.quantity
+        }));
+        // Set order Information
+        const orderInfor = {
+            userId: user.id,
+            orderDetails: listFood,
+            name: data.name,
+            phoneNumber: data.phoneNumber,
+            address: data.address
+        }
+        // Checkout
+        const response = await CHECK_OUT(orderInfor);
+        if (response.status === 201)
+        {
+            toast.success("Đặt hàng thành công");
+            await dispatch(CLEAR_CART());
+            setTimeout(() => navigate("/menu"), 1000);
+        }
+        else
+        {
+            toast.error("Đặt hàng thất bại");
+        }
     };
 
     return (
@@ -40,10 +73,15 @@ export default function Checkout(props)
                     </div>
                     <div className="inputBox">
                         <span>Tổng thanh toán :</span>
-                        <input type="text" placeholder="Nhập địa chỉ..." />
+                        <h3 style={{ color: "#130f40", fontSize: "2rem", marginTop: "1.7rem" }}>
+                            Số tiền :
+                            <span style={{ color: "#27ae60", fontSize: "100%" }}> {total} VNĐ</span>
+                        </h3>
                     </div>
                 </div>
-                <input type="submit" value="Xác nhận đặt món" className="btn" />
+                <span style={{ marginLeft: "40%" }}>
+                    <input type="submit" value="Xác nhận đặt món" className="btn" />
+                </span>
             </form>
         </section>
     )
