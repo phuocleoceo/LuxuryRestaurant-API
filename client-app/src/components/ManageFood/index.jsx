@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 
-export default function Manage()
+export default function ManageFood()
 {
     const [listFood, setListFood] = useState([]);
     useEffect(() => getFood(), []);

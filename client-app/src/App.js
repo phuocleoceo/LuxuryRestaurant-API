@@ -1,15 +1,16 @@
 import { CheckLoggedIn } from './redux/slices/authenticationSlice';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import CreateFood from './components/Manage/CreateFood';
+import CreateFood from './components/ManageFood/CreateFood';
 import { useDispatch, useSelector } from 'react-redux';
-import EditFood from './components/Manage/EditFood';
+import EditFood from './components/ManageFood/EditFood';
 import NotFound from './components/Other/NotFound';
+import ManageOrder from './components/ManageOrder';
+import ManageFood from './components/ManageFood';
 import Navigation from './components/Navigation';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Checkout from './components/Checkout';
 import React, { useEffect } from 'react';
-import Manage from './components/Manage';
 import Login from './components/Login';
 import Home from './components/Home';
 import Cart from './components/Cart';
@@ -37,9 +38,11 @@ function App()
           {
             user.role === "admin" &&
             <Route path="manage">
-              <Route path="" element={<Manage />} />
-              <Route path="create" element={<CreateFood />} />
-              <Route path="edit/:foodId" element={<EditFood />} />
+              <Route path="food" element={<ManageFood />} />
+              <Route path="food/create" element={<CreateFood />} />
+              <Route path="food/edit/:foodId" element={<EditFood />} />
+
+              <Route path="order" element={<ManageOrder />} />
             </Route>
           }
           {
