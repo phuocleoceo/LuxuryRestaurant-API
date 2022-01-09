@@ -27,12 +27,12 @@ export default function Navigation()
                 <Link to="/menu" className="link">Menu</Link>
                 {
                     user.role === "admin" &&
-                    <div class="dropdown">
-                        <span class="dropdown_btn">Quản lý</span>
-                        <div class="dropdown_content">
-                            <Link to="/manage/food" class="dropdown_select">Món ăn</Link>
-                            <Link to="/manage/order" class="dropdown_select">Đơn hàng</Link>
-                            <Link to="/manage/user" class="dropdown_select">Người dùng</Link>
+                    <div className="dropdown">
+                        <span className="dropdown_btn">Quản lý</span>
+                        <div className="dropdown_content">
+                            <Link to="/manage/food" className="dropdown_select">Món ăn</Link>
+                            <Link to="/manage/order" className="dropdown_select">Đơn hàng</Link>
+                            <Link to="/manage/user" className="dropdown_select">Người dùng</Link>
                         </div>
                     </div>
                 }

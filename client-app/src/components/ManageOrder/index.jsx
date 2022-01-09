@@ -1,10 +1,70 @@
-import React from 'react'
+import { GET_ALL_ORDER } from '../../api/apiOrder';
+import React, { useState, useEffect } from 'react';
 
 export default function ManageOrder()
 {
+    const [listOrder, setListOrder] = useState([]);
+    useEffect(() =>
+    {
+        const getOrder = async () =>
+        {
+            const response = await GET_ALL_ORDER();
+            if (response.status === 200)
+            {
+                setListOrder(response.data);
+            }
+        }
+        getOrder();
+    }, []);
     return (
-        <div>
-            <img src='https://res.cloudinary.com/dn4nxz7f0/image/upload/f_auto,q_auto,w_512/m3aoxdrswzdwcwggc5c7.webp' alt='' />
-        </div>
+        <section className="manage-container">
+            <div className="table-Container">
+                <p className="title heading">
+                    <span>Quản Lý Đơn hàng</span>
+                </p>
+                <div className="table-box">
+                    <table id="food-table">
+                        <thead>
+                            <tr>
+                                <th>Người mua</th>
+                                <th>SĐT</th>
+                                <th>Địa chỉ</th>
+                                <th>Tổng thanh toán</th>
+                                <th>Ngày đặt</th>
+                                <th>Danh sách món</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {
+                                listOrder.length > 0 &&
+                                listOrder.map(o => (
+                                    <tr key={o.id}>
+                                        <td>{o.name}</td>
+                                        <td>{o.phoneNumber}</td>
+                                        <td>{o.address}</td>
+                                        <td>{o.orderTotal}</td>
+                                        <td>{o.orderDate}</td>
+                                        <td>
+                                            <span className="action_btn">
+                                                <span className="fas fa-eye"></span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        // <div>
+        //     {
+        //         listOrder.length > 0 &&
+        //         listOrder.map(o => (
+        //             <h1>{o.userId}</h1>
+        //         ))
+        //     }
+        // </div>
     )
 }
