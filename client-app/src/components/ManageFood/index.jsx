@@ -21,8 +21,8 @@ export default function ManageFood()
     {
         if (window.confirm("Bạn chắc chắn muốn xoá chứ ?"))
         {
-            const check = await DELETE_FOOD(foodId);
-            if (check.status === 204)
+            const response = await DELETE_FOOD(foodId);
+            if (response.status === 204)
             {
                 toast.success("Xoá thành công");
             }
@@ -40,7 +40,7 @@ export default function ManageFood()
                 <p className="title heading">
                     <span>Quản Lý Món Ăn</span>
                 </p>
-                <Link to="/manage/create">
+                <Link to="/manage/food/create">
                     <span className="upsert">
                         <i className="fas fa-plus"></i> &nbsp;
                         Tạo món mới
@@ -67,7 +67,7 @@ export default function ManageFood()
                                         <td>{f.description}</td>
                                         <td>
                                             <span className="action_btn">
-                                                <Link to={"/manage/edit/" + f.id}>
+                                                <Link to={"/manage/food/edit/" + f.id}>
                                                     <span className="fas fa-edit"></span>
                                                 </Link>
 
