@@ -17,7 +17,12 @@ public class OrderService
         _orderCollection = mongoDatabase.GetCollection<Order>("orders");
     }
 
-    public async Task<Order> GetAsync(string UserId)
+    public async Task<List<Order>> GetAllAsync()
+    {
+        return await _orderCollection.Find(_ => true).ToListAsync();
+    }
+
+    public async Task<Order> GetOneAsync(string UserId)
     {
         return await _orderCollection.Find(c => c.UserId == UserId).FirstOrDefaultAsync();
     }

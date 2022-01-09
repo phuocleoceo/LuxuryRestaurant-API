@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using LuxuryRestaurantAPI.DTO;
 using System.Net;
 using AutoMapper;
+using LuxuryRestaurantAPI.Extension;
 
 namespace LuxuryRestaurantAPI.Controllers;
 
@@ -29,5 +30,13 @@ public class OrderController : ControllerBase
         order.OrderTotal = order.OrderDetails.Sum(c => c.Price * c.Quantity);
         await _orderService.CreateAsync(order);
         return StatusCode(((int)HttpStatusCode.Created)); //201
+    }
+
+    [HttpGet("/api/Order/GetAll")]
+    [Authorize(Roles = Constant.Role_Admin)]
+    public async Task<IActionResult> GetAllOrder()
+    {
+        List<Order> list = await _orderService.GetAllAsync();
+        return Ok(list);
     }
 }
