@@ -7,6 +7,7 @@ import NotFound from './components/Other/NotFound';
 import ManageOrder from './components/ManageOrder';
 import ManageFood from './components/ManageFood';
 import Navigation from './components/Navigation';
+import ManageUser from './components/ManageUser';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Checkout from './components/Checkout';
@@ -43,6 +44,7 @@ function App()
               <Route path="food/edit/:foodId" element={<EditFood />} />
 
               <Route path="order" element={<ManageOrder />} />
+              <Route path="user" element={<ManageUser />} />
             </Route>
           }
           {

@@ -37,7 +37,7 @@ export default function EditFood()
         if (response.status === 204)
         {
             toast.success("Sửa thành công");
-            setTimeout(() => navigate("/manage"), 1500);
+            setTimeout(() => navigate("/manage/food"), 1500);
         }
         else
         {

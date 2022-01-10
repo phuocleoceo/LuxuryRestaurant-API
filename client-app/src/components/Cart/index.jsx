@@ -88,7 +88,7 @@ export default function Cart()
                     {
                         (user.id && food.length > 0) &&
                         <Link to="/checkout" state={{ food, total, user }} className="btn">
-                            Tiến hành đặt món
+                            <i className="far fa-credit-card"></i> Tiến hành đặt món
                         </Link>
                     }
                 </div>

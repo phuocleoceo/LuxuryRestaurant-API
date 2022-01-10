@@ -24,9 +24,17 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<User>> GetListUser()
+    public async Task<IActionResult> GetListUser()
     {
-        return await _userService.GetAllAsync();
+        List<User> listUser = await _userService.GetAllAsync();
+        var list = listUser.Select(c => new
+        {
+            id = c.Id,
+            username = c.Username,
+            displayname = c.Displayname,
+            role = c.Role
+        });
+        return Ok(list);
     }
 
     [HttpGet("{id:length(24)}")]

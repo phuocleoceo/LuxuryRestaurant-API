@@ -18,7 +18,7 @@ export default function CreateFood()
         if (check.status === 201)
         {
             toast.success("Tạo thành công");
-            setTimeout(() => navigate("/manage"), 1500);
+            setTimeout(() => navigate("/manage/food"), 1500);
         }
         else
         {
