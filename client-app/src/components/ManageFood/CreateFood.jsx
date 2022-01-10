@@ -14,8 +14,8 @@ export default function CreateFood()
 
     const onSubmit = async (data) =>
     {
-        const check = await POST_FOOD(data);
-        if (check.status === 201)
+        const response = await POST_FOOD(data);
+        if (response.status === 201)
         {
             toast.success("Tạo thành công");
             setTimeout(() => navigate("/manage/food"), 1500);

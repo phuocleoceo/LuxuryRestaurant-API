@@ -28,20 +28,20 @@ export default function Login()
     return (
         <div className="login-form-container">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h3>LOGIN FORM</h3>
+                <h3>ĐĂNG NHẬP</h3>
                 <input type="text" {...register("username")} required
-                    placeholder="Enter your username..." className="box" />
+                    placeholder="Tên đăng nhập..." className="box" />
 
                 <input type="password" {...register("password")} required
-                    placeholder="Enter your password..." className="box" />
+                    placeholder="Mật khẩu..." className="box" />
 
                 <div className="remember">
                     <input type="checkbox" name="" id="remember-me" />
-                    <label>Remember Me</label>
+                    <label>Nhớ trạng thái đăng nhập</label>
                 </div>
-                <input type="submit" value="Login Now" className="btn" />
-                <p>Forget Password? <Link to="/">Click Here</Link></p>
-                <p>Don't Have An Account? <Link to="/register">Create One</Link></p>
+                <input type="submit" value="Đăng nhập ngay" className="btn" />
+                <p>Quên mật khẩu ? <Link to="/">Đặt lại</Link></p>
+                <p>Bạn chưa có tài khoản ? <Link to="/register">Đăng ký</Link></p>
             </form>
 
         </div>
