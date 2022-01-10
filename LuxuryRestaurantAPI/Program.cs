@@ -2,6 +2,7 @@ using LuxuryRestaurantAPI.Authentication;
 using LuxuryRestaurantAPI.Extension;
 using LuxuryRestaurantAPI.Service;
 using LuxuryRestaurantAPI.Mapper;
+using LuxuryRestaurantAPI.Email;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,9 @@ builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<OrderService>();
 builder.Services.AddAutoMapper(typeof(LRMapping));
 builder.Services.AddScoped<IAuthenticationManager, AuthenticationManager>();
+
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddTransient<IMailService, MailService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

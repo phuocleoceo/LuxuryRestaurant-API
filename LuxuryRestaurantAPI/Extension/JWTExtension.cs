@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Identity;
-using LuxuryRestaurantAPI.Models;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
