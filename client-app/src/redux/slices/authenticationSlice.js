@@ -1,19 +1,6 @@
 import { SET_USER, GET_USER, REMOVE_USER } from '../../extension/UserLS';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { LOGIN, REGISTER } from '../../api/apiAuthentication';
-
-export const RegisterAction = createAsyncThunk(
-    "authentication/RegisterAction",
-    async (body) =>
-    {
-        try
-        {
-            const response = await REGISTER(body);
-            return response.status === 201;
-        }
-        catch { return false; }
-    }
-);
+import { LOGIN } from '../../api/apiAuthentication';
 
 export const LoginAction = createAsyncThunk(
     "authentication/LoginAction",

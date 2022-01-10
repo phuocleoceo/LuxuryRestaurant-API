@@ -52,9 +52,16 @@ export default function Navigation()
                     user.id ?
                         <div id="logout-btn" onClick={handleLogout} className="fas fa-sign-out-alt"></div>
                         :
-                        <Link to="/login">
-                            <div id="login-btn" className="fas fa-user"></div>
-                        </Link>
+                        <>
+                            <Link to="/register">
+                                <div id="login-btn" className="fas fa-user-plus"></div>
+                            </Link>
+                            <Link to="/login">
+                                <div id="login-btn" className="fas fa-sign-in-alt"></div>
+                            </Link>
+                        </>
+
+
                 }
             </div>
         </header>

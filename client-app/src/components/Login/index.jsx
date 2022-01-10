@@ -1,5 +1,5 @@
 import { LoginAction } from '../../redux/slices/authenticationSlice';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -40,8 +40,8 @@ export default function Login()
                     <label>Remember Me</label>
                 </div>
                 <input type="submit" value="Login Now" className="btn" />
-                <p>Forget Password? <a href="/">Click Here</a></p>
-                <p>Don't Have An Account? <a href="/">Create One</a></p>
+                <p>Forget Password? <Link to="/">Click Here</Link></p>
+                <p>Don't Have An Account? <Link to="/register">Create One</Link></p>
             </form>
 
         </div>

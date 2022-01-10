@@ -11,6 +11,7 @@ import ManageUser from './components/ManageUser';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Checkout from './components/Checkout';
+import Register from './components/Register';
 import React, { useEffect } from 'react';
 import Login from './components/Login';
 import Home from './components/Home';
@@ -51,6 +52,7 @@ function App()
             user.id &&
             <Route path="checkout" element={<Checkout />} />
           }
+          <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
