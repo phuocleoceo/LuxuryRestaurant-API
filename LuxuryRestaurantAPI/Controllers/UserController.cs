@@ -32,6 +32,9 @@ public class UserController : ControllerBase
             id = c.Id,
             username = c.Username,
             displayname = c.Displayname,
+            email = c.Email,
+            phoneNumber = c.PhoneNumber,
+            address = c.Address,
             role = c.Role
         });
         return Ok(list);

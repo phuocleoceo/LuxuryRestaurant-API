@@ -26,9 +26,11 @@ export default function ManageUser()
                     <table id="food-table">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Tên đăng nhập</th>
                                 <th>Tên hiển thị</th>
+                                <th>Email</th>
+                                <th>SĐT</th>
+                                <th>Địa chỉ</th>
                                 <th>Vai trò</th>
                                 <th>Hành động</th>
                             </tr>
@@ -39,9 +41,11 @@ export default function ManageUser()
                                 listUser.length > 0 &&
                                 listUser.map(u => (
                                     <tr key={u.id}>
-                                        <td>{u.id}</td>
                                         <td>{u.username}</td>
                                         <td>{u.displayname}</td>
+                                        <td>{u.email}</td>
+                                        <td>{u.phoneNumber}</td>
+                                        <td>{u.address}</td>
                                         <td>{u.role}</td>
                                         < td >
                                             <span className="action_btn">

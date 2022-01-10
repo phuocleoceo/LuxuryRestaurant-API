@@ -58,8 +58,11 @@ public class AuthenticationController : ControllerBase
         var userInfor = new
         {
             Id = _user.Id,
-            Displayname = _user.Displayname,
             Username = _user.Username,
+            Displayname = _user.Displayname,
+            Email = _user.Email,
+            PhoneNumber = _user.PhoneNumber,
+            Address = _user.Address,
             Role = _user.Role
         };
         return Ok(new
@@ -98,8 +101,11 @@ public class AuthenticationController : ControllerBase
         var userInfor = new
         {
             Id = _user.Id,
-            Displayname = _user.Displayname,
             Username = _user.Username,
+            Displayname = _user.Displayname,
+            Email = _user.Email,
+            PhoneNumber = _user.PhoneNumber,
+            Address = _user.Address,
             Role = _user.Role
         };
         return Ok(new

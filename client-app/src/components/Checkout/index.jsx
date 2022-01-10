@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CLEAR_CART } from '../../redux/slices/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { CHECK_OUT } from '../../api/apiOrder';
-import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import React from 'react';
@@ -11,7 +11,8 @@ export default function Checkout()
     let navigate = useNavigate();
     const dispatch = useDispatch();
     const location = useLocation();
-    const { food, total, user } = location.state;
+    const { food, total } = location.state;
+    const user = useSelector(state => state.authentication);
 
     const { register, handleSubmit } = useForm();
 
@@ -56,20 +57,20 @@ export default function Checkout()
                 <div className="flex">
                     <div className="inputBox">
                         <span>Tên người nhận :</span>
-                        <input type="text" placeholder="Nhập tên..."
-                            {...register("name")} required />
+                        <input type="text" placeholder="Nhập tên..." required
+                            {...register("name")} defaultValue={user.displayname} />
                     </div>
                     <div className="inputBox">
                         <span>Số điện thoại :</span>
-                        <input type="text" placeholder="Nhập SĐT..."
-                            {...register("phoneNumber")} required />
+                        <input type="text" placeholder="Nhập SĐT..." required
+                            {...register("phoneNumber")} defaultValue={user.phoneNumber} />
                     </div>
                 </div>
                 <div className="flex">
                     <div className="inputBox">
                         <span>Địa chỉ :</span>
-                        <input type="text" placeholder="Nhập địa chỉ..."
-                            {...register("address")} />
+                        <input type="text" placeholder="Nhập địa chỉ..." required
+                            {...register("address")} defaultValue={user.address} />
                     </div>
                     <div className="inputBox">
                         <span>Tổng thanh toán :</span>
