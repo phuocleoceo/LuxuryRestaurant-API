@@ -1,10 +1,15 @@
-import { GET_ALL_ORDER } from '../../api/apiOrder';
 import React, { useState, useEffect } from 'react';
+import { GET_ALL_ORDER } from '../../api/apiOrder';
+import OrderModal from '../Other/OrderModal';
+import useModal from '../../hooks/useModal';
 import moment from 'moment';
 
 export default function ManageOrder()
 {
+    const { isShowing, toggle } = useModal();
     const [listOrder, setListOrder] = useState([]);
+    const [orderDetail, setOrderDetail] = useState([]);
+
     useEffect(() =>
     {
         const getOrder = async () =>
@@ -48,7 +53,12 @@ export default function ManageOrder()
                                         <td>{moment(o.orderDate).format('DD/MM/YYYY , hh:mm a')}</td>
                                         < td >
                                             <span className="action_btn">
-                                                <span className="fas fa-eye"></span>
+                                                <span className="fas fa-eye"
+                                                    onClick={() =>
+                                                    {
+                                                        setOrderDetail(o.orderDetails);
+                                                        toggle();
+                                                    }}></span>
                                             </span>
                                         </td>
                                     </tr>
@@ -58,6 +68,11 @@ export default function ManageOrder()
                     </table>
                 </div>
             </div>
+            <OrderModal
+                isShowing={isShowing}
+                hide={toggle}
+                orderDetail={orderDetail}
+            />
         </section>
     )
 }

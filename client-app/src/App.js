@@ -1,8 +1,8 @@
 import { CheckLoggedIn } from './redux/slices/authenticationSlice';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateFood from './components/ManageFood/CreateFood';
-import { useDispatch, useSelector } from 'react-redux';
 import EditFood from './components/ManageFood/EditFood';
+import { useDispatch, useSelector } from 'react-redux';
 import NotFound from './components/Other/NotFound';
 import ManageOrder from './components/ManageOrder';
 import ManageFood from './components/ManageFood';
