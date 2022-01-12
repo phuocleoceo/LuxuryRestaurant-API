@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authorization;
+using LuxuryRestaurantAPI.Extension;
 using LuxuryRestaurantAPI.Email;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +16,7 @@ public class EmailController : ControllerBase
     }
 
     [HttpPost("Send")]
+    [Authorize(Roles = Constant.Role_Admin)]
     public async Task<IActionResult> Send([FromForm] MailContent mailContent)
     {
         await _mailService.SendEmailAsync(mailContent);

@@ -27,7 +27,7 @@ public class AuthenticationController : ControllerBase
         _configuration = configuration;
     }
 
-    [HttpPost("register")]
+    [HttpPost("Register")]
     public async Task<IActionResult> Register(UserForRegister newUserReg)
     {
         User newUser = _mapper.Map<User>(newUserReg);
@@ -36,7 +36,7 @@ public class AuthenticationController : ControllerBase
         return StatusCode(((int)HttpStatusCode.Created)); //201
     }
 
-    [HttpPost("login")]
+    [HttpPost("Login")]
     public async Task<IActionResult> Login(UserForLogin userForLogin)
     {
         User user = _mapper.Map<User>(userForLogin);
@@ -73,7 +73,7 @@ public class AuthenticationController : ControllerBase
         });
     }
 
-    [HttpPost("refresh")]
+    [HttpPost("Refresh")]
     public async Task<IActionResult> Refresh(TokenDTO tokenDTO)
     {
         if (tokenDTO == null)
@@ -116,7 +116,7 @@ public class AuthenticationController : ControllerBase
         });
     }
 
-    [HttpPost("revoke")]
+    [HttpPost("Revoke")]
     [Authorize]
     public async Task<IActionResult> Revoke()
     {

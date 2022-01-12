@@ -1,26 +1,14 @@
 import { ADD_TO_CART } from '../../redux/slices/cartSlice';
-import React, { useEffect, useState } from 'react';
+import useGetData from '../../hooks/useGetData';
 import { GET_FOOD } from '../../api/apiFood';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import React from 'react';
 
 export default function Menu()
 {
     const dispatch = useDispatch();
-    const [listFood, setListFood] = useState([]);
-
-    useEffect(() =>
-    {
-        const getFd = async () =>
-        {
-            const response = await GET_FOOD();
-            if (response.status === 200)
-            {
-                setListFood(response.data);
-            }
-        };
-        getFd();
-    }, []);
+    const { isLoading, responseData: listFood } = useGetData(GET_FOOD);
 
     const handleAddToCart = async (foodId) =>
     {
@@ -36,28 +24,29 @@ export default function Menu()
 
             <div className="box-container">
                 {
-                    listFood.length > 0 &&
-                    listFood.map(f => (
-                        <div className="box" key={f.id}>
-                            <div className="image">
-                                <img src={f.imagePath} alt="" />
-                            </div>
-                            <div className="content">
-                                <div className="tags">
-                                    <span className="link"><i className="fas fa-tag"></i> Ngon / </span>
-                                    <span className="link"><i className="fas fa-tag"></i> Rẻ / </span>
-                                    <span className="link"><i className="fas fa-tag"></i> Sang trọng  </span>
+                    isLoading ? <div class="loader"></div> :
+                        listFood.length > 0 &&
+                        listFood.map(f => (
+                            <div className="box" key={f.id}>
+                                <div className="image">
+                                    <img src={f.imagePath} alt="" />
                                 </div>
-                                <h3>{f.name}</h3>
-                                <p>{f.description}</p>
+                                <div className="content">
+                                    <div className="tags">
+                                        <span className="link"><i className="fas fa-tag"></i> Ngon / </span>
+                                        <span className="link"><i className="fas fa-tag"></i> Rẻ / </span>
+                                        <span className="link"><i className="fas fa-tag"></i> Sang trọng  </span>
+                                    </div>
+                                    <h3>{f.name}</h3>
+                                    <p>{f.description}</p>
 
-                                <button className="btn" onClick={() => handleAddToCart(f.id)}>
-                                    <i className="fas fa-cart-plus"></i>Thêm vào giỏ
-                                </button>
-                                <span className="price">{f.price / 1000}K VNĐ</span>
+                                    <button className="btn" onClick={() => handleAddToCart(f.id)}>
+                                        <i className="fas fa-cart-plus"></i>Thêm vào giỏ
+                                    </button>
+                                    <span className="price">{f.price / 1000}K VNĐ</span>
+                                </div>
                             </div>
-                        </div>
-                    ))
+                        ))
                 }
             </div>
         </section>
