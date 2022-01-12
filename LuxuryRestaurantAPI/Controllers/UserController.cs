@@ -27,16 +27,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> GetListUser()
     {
         List<User> listUser = await _userService.GetAllAsync();
-        var list = listUser.Select(c => new
-        {
-            id = c.Id,
-            username = c.Username,
-            displayname = c.Displayname,
-            email = c.Email,
-            phoneNumber = c.PhoneNumber,
-            address = c.Address,
-            role = c.Role
-        });
+        IEnumerable<UserDTO> list = listUser.Select(c => _mapper.Map<UserDTO>(c));
         return Ok(list);
     }
 

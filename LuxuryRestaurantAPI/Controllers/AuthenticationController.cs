@@ -55,16 +55,7 @@ public class AuthenticationController : ControllerBase
         _user.RefreshTokenExpiryTime = DateTime.Now.AddDays(Convert.ToDouble(refreshTokenExpiryTime));
         await _userService.UpdateAsync(_user.Id, _user);
 
-        var userInfor = new
-        {
-            Id = _user.Id,
-            Username = _user.Username,
-            Displayname = _user.Displayname,
-            Email = _user.Email,
-            PhoneNumber = _user.PhoneNumber,
-            Address = _user.Address,
-            Role = _user.Role
-        };
+        UserDTO userInfor = _mapper.Map<UserDTO>(_user);
         return Ok(new
         {
             AccessToken = accessToken,
@@ -98,16 +89,7 @@ public class AuthenticationController : ControllerBase
         _user.RefreshToken = newRefreshToken; // Not change ExpireDay, it's only changed when Re-Login or Revoke
         await _userService.UpdateAsync(_user.Id, _user);
 
-        var userInfor = new
-        {
-            Id = _user.Id,
-            Username = _user.Username,
-            Displayname = _user.Displayname,
-            Email = _user.Email,
-            PhoneNumber = _user.PhoneNumber,
-            Address = _user.Address,
-            Role = _user.Role
-        };
+        UserDTO userInfor = _mapper.Map<UserDTO>(_user);
         return Ok(new
         {
             AccessToken = newAccessToken,

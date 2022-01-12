@@ -11,6 +11,8 @@ public class LRMapping : Profile
     {
         CreateMap<FoodDTO, Food>();
 
+        CreateMap<User, UserDTO>();
+
         CreateMap<UserForLogin, User>();
 
         CreateMap<UserForRegister, User>()
