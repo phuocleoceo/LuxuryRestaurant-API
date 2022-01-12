@@ -1,21 +1,12 @@
 import { GET_FOOD, DELETE_FOOD } from '../../api/apiFood';
-import React, { useState, useEffect } from 'react';
+import useGetData from '../../hooks/useGetData';
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
+import React from 'react';
 
 export default function ManageFood()
 {
-    const [listFood, setListFood] = useState([]);
-    useEffect(() => getFood(), []);
-
-    const getFood = async () =>
-    {
-        const response = await GET_FOOD();
-        if (response.status === 200)
-        {
-            setListFood(response.data);
-        }
-    };
+    const { isLoading, responseData: listFood, handleForceReload } = useGetData(GET_FOOD);
 
     const handleDelete = async (foodId) =>
     {
@@ -30,7 +21,7 @@ export default function ManageFood()
             {
                 toast.error("Xoá thất bại");
             }
-            await getFood();
+            handleForceReload();
         }
     }
 
@@ -46,41 +37,43 @@ export default function ManageFood()
                         Tạo món mới
                     </span>
                 </Link>
-                <div className="table-box">
-                    <table id="food-table">
-                        <thead>
-                            <tr>
-                                <th>Tên</th>
-                                <th>Giá</th>
-                                <th>Mô tả</th>
-                                <th>Hành động</th>
-                            </tr>
-                        </thead>
+                {isLoading ? <div className="loader"></div> :
+                    <div className="table-box">
+                        <table id="food-table">
+                            <thead>
+                                <tr>
+                                    <th>Tên</th>
+                                    <th>Giá</th>
+                                    <th>Mô tả</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            {
-                                listFood.length > 0 &&
-                                listFood.map(f => (
-                                    <tr key={f.id}>
-                                        <td>{f.name}</td>
-                                        <td>{f.price}</td>
-                                        <td>{f.description}</td>
-                                        <td>
-                                            <span className="action_btn">
-                                                <Link to={"/manage/food/edit/" + f.id}>
-                                                    <span className="fas fa-edit"></span>
-                                                </Link>
+                            <tbody>
+                                {
+                                    listFood.length > 0 &&
+                                    listFood.map(f => (
+                                        <tr key={f.id}>
+                                            <td>{f.name}</td>
+                                            <td>{f.price}</td>
+                                            <td>{f.description}</td>
+                                            <td>
+                                                <span className="action_btn">
+                                                    <Link to={"/manage/food/edit/" + f.id}>
+                                                        <span className="fas fa-edit"></span>
+                                                    </Link>
 
-                                                <span className="fas fa-trash-alt"
-                                                    onClick={() => handleDelete(f.id)}></span>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                                                    <span className="fas fa-trash-alt"
+                                                        onClick={() => handleDelete(f.id)}></span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
             </div>
         </section>
     )

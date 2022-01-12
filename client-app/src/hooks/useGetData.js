@@ -4,6 +4,7 @@ export default function useGetData(AXIOS_GET)
 {
     const [isLoading, setIsLoading] = useState(true);
     const [responseData, setResponseData] = useState([]);
+    const [forceReload, setForceReload] = useState(true);
 
     useEffect(() =>
     {
@@ -17,11 +18,14 @@ export default function useGetData(AXIOS_GET)
             }
         };
         getData();
-    }, [AXIOS_GET]);
+    }, [AXIOS_GET, forceReload]);
+
+    const handleForceReload = () => setForceReload(!forceReload);
 
     return {
         isLoading,
-        responseData
+        responseData,
+        handleForceReload
     };
 };
 

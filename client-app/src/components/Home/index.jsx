@@ -1,6 +1,6 @@
-import React from 'react';
-import HomeIMG from '../../assets/img/home-img.png';
 import ParallaxIMG from '../../assets/img/home-parallax-img.png';
+import HomeIMG from '../../assets/img/home-img.png';
+import React from 'react';
 
 export default function Home()
 {

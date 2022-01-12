@@ -24,7 +24,7 @@ export default function Menu()
 
             <div className="box-container">
                 {
-                    isLoading ? <div class="loader"></div> :
+                    isLoading ? <div className="loader"></div> :
                         listFood.length > 0 &&
                         listFood.map(f => (
                             <div className="box" key={f.id}>
