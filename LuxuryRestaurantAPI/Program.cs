@@ -20,6 +20,7 @@ builder.Services.AddCors(c =>
 builder.Services.AddSingleton<FoodService>();
 builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<OrderService>();
+builder.Services.AddSingleton<StatisticService>();
 builder.Services.AddAutoMapper(typeof(LRMapping));
 builder.Services.AddScoped<IAuthenticationManager, AuthenticationManager>();
 
