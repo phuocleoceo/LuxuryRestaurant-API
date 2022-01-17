@@ -24,10 +24,9 @@ public class StatisticController : ControllerBase
     {
         Dictionary<DayOfWeek, double> salesJson = new Dictionary<DayOfWeek, double>();
         double[] sales = await _statisticService.GetSalesPerDayOfWeek();
-        double total = sales.Sum();
         for (int i = 0; i < 7; i++)
         {
-            salesJson[(DayOfWeek)i] = sales[i] / total * 100;
+            salesJson[(DayOfWeek)i] = sales[i];
         }
         return Ok(salesJson);
     }

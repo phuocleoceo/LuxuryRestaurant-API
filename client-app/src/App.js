@@ -1,6 +1,7 @@
 import { CheckLoggedIn } from './redux/slices/authenticationSlice';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateFood from './components/ManageFood/CreateFood';
+import DayOfWeek from './components/Statistic/DayOfWeek';
 import EditFood from './components/ManageFood/EditFood';
 import { useDispatch, useSelector } from 'react-redux';
 import NotFound from './components/Other/NotFound';
@@ -37,6 +38,7 @@ function App()
         <Routes>
           <Route path="" element={<Home />} />
           <Route path="menu" element={<Menu />} />
+
           {
             user.role === "admin" &&
             <Route path="manage">
@@ -48,10 +50,19 @@ function App()
               <Route path="user" element={<ManageUser />} />
             </Route>
           }
+
+          {
+            user.role === "admin" &&
+            <Route path="statistic">
+              <Route path="dow" element={< DayOfWeek />} />
+            </Route>
+          }
+
           {
             user.id &&
             <Route path="checkout" element={<Checkout />} />
           }
+
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="cart" element={<Cart />} />
