@@ -2,6 +2,7 @@ import { CheckLoggedIn } from './redux/slices/authenticationSlice';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateFood from './components/ManageFood/CreateFood';
 import DayOfWeek from './components/Statistic/DayOfWeek';
+import TopSeller from './components/Statistic/TopSeller';
 import EditFood from './components/ManageFood/EditFood';
 import { useDispatch, useSelector } from 'react-redux';
 import NotFound from './components/Other/NotFound';
@@ -54,7 +55,8 @@ function App()
           {
             user.role === "admin" &&
             <Route path="statistic">
-              <Route path="dow" element={< DayOfWeek />} />
+              <Route path="dow" element={<DayOfWeek />} />
+              <Route path="topseller" element={<TopSeller />} />
             </Route>
           }
 

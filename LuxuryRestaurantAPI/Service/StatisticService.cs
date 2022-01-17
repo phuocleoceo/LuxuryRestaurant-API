@@ -1,4 +1,5 @@
 using LuxuryRestaurantAPI.Models;
+using LuxuryRestaurantAPI.DTO;
 using MongoDB.Driver;
 
 namespace LuxuryRestaurantAPI.Service;
@@ -19,16 +20,29 @@ public class StatisticService
 
     public async Task<Dictionary<DayOfWeek, double>> GetSalesPerDayOfWeek()
     {
-        List<Order> listOrder = await _orderCollection.Find(_ => true).ToListAsync();
+        List<Order> order = await _orderCollection.Find(_ => true).ToListAsync();
         Dictionary<DayOfWeek, double> sales = new Dictionary<DayOfWeek, double>();
         for (int i = 0; i < 7; i++)
         {
-            IEnumerable<Order> orderDOW = listOrder.Where(c => c.OrderDate.DayOfWeek == (DayOfWeek)i);//0 : Sunday
+            IEnumerable<Order> orderDOW = order.Where(c => c.OrderDate.DayOfWeek == (DayOfWeek)i);//0 : Sunday
             if (orderDOW.Count() == 0)
                 sales.Add((DayOfWeek)i, 0);
             else
                 sales.Add((DayOfWeek)i, orderDOW.Sum(c => c.OrderTotal));
         }
         return sales;
+    }
+
+    public async Task<IEnumerable<TopSeller>> GetTopSeller()
+    {
+        List<Order> order = await _orderCollection.Find(_ => true).ToListAsync();
+        IEnumerable<OrderDetail> orderDetail = order.SelectMany(c => c.OrderDetails);
+
+        return orderDetail.GroupBy(c => c.FoodName)
+        .Select(c => new TopSeller
+        {
+            Name = c.First().FoodName,
+            Count = c.Sum(x => x.Quantity)
+        }).OrderByDescending(c => c.Count).Take(5);
     }
 }

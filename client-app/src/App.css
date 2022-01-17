@@ -772,6 +772,16 @@ tr:hover {
   cursor: pointer;
   border: none;
 }
+
+/*-------------------------------------- Chart -----------------------------------------*/
+.pie-chart{
+  width: 40vw;
+  height: auto;
+  position: relative;
+  top: 10%;
+  left: 30%;
+}
+
 /*--------------------------------------------------------------------------------------*/
 @media (max-width: 991px) {
   html {
@@ -834,6 +844,11 @@ tr:hover {
   }
   .home .content p {
     font-size: 1.5rem;
+  }
+
+  .pie-chart{
+    width: 100vw;
+    height: auto;
   }
 }
 

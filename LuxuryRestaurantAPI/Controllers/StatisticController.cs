@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using LuxuryRestaurantAPI.Extension;
 using LuxuryRestaurantAPI.Service;
 using Microsoft.AspNetCore.Mvc;
+using LuxuryRestaurantAPI.DTO;
 using AutoMapper;
 
 namespace LuxuryRestaurantAPI.Controllers;
@@ -24,5 +25,12 @@ public class StatisticController : ControllerBase
     {
         Dictionary<DayOfWeek, double> sales = await _statisticService.GetSalesPerDayOfWeek();
         return Ok(sales);
+    }
+
+    [HttpGet("/api/Statistic/TopSeller")]
+    public async Task<IActionResult> GetTopSeller()
+    {
+        IEnumerable<TopSeller> topSellers = await _statisticService.GetTopSeller();
+        return Ok(topSellers);
     }
 }

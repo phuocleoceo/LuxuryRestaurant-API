@@ -1,14 +1,8 @@
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, } from 'chart.js';
 import { GET_SALES_PER_DOW } from '../../api/apiStatistic';
 import useGetData from '../../hooks/useGetData';
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
-
-import
-{
-    Chart as ChartJS, CategoryScale,
-    LinearScale, BarElement,
-    Title, Tooltip, Legend,
-} from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement,
     Title, Tooltip, Legend);

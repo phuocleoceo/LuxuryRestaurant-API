@@ -39,6 +39,7 @@ export default function Navigation()
                             <span className="dropdown_btn">Thống kê</span>
                             <div className="dropdown_content">
                                 <Link to="/statistic/dow" className="dropdown_select">Ngày trong tuần</Link>
+                                <Link to="/statistic/topseller" className="dropdown_select">Thịnh hành</Link>
                             </div>
                         </div>
                     </>
