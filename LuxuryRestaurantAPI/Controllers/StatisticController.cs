@@ -22,12 +22,7 @@ public class StatisticController : ControllerBase
     [HttpGet("/api/Statistic/SalesPerDOW")]
     public async Task<IActionResult> GetSalesPerDayOfWeek()
     {
-        Dictionary<DayOfWeek, double> salesJson = new Dictionary<DayOfWeek, double>();
-        double[] sales = await _statisticService.GetSalesPerDayOfWeek();
-        for (int i = 0; i < 7; i++)
-        {
-            salesJson[(DayOfWeek)i] = sales[i];
-        }
-        return Ok(salesJson);
+        Dictionary<DayOfWeek, double> sales = await _statisticService.GetSalesPerDayOfWeek();
+        return Ok(sales);
     }
 }
