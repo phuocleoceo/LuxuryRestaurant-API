@@ -1,3 +1,5 @@
+using LuxuryRestaurantAPI.Extension.Paging;
+using LuxuryRestaurantAPI.DTO.RequestModel;
 using LuxuryRestaurantAPI.Models;
 using MongoDB.Driver;
 
@@ -20,6 +22,12 @@ public class FoodService
     public async Task<List<Food>> GetAllAsync()
     {
         return await _foodCollection.Find(_ => true).ToListAsync();
+    }
+
+    public async Task<PagedList<Food>> GetWithParametersAsync(FoodParameter foodParameter)
+    {
+        List<Food> listFood = await _foodCollection.Find(_ => true).ToListAsync();
+        return listFood.ToPagedList(foodParameter.PageNumber, foodParameter.PageSize);
     }
 
     public async Task<List<Food>> GetListAsync(string[] foodId)

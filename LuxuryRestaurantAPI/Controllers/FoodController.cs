@@ -1,3 +1,4 @@
+using LuxuryRestaurantAPI.DTO.RequestModel;
 using Microsoft.AspNetCore.Authorization;
 using LuxuryRestaurantAPI.Extension;
 using LuxuryRestaurantAPI.Service;
@@ -23,9 +24,9 @@ public class FoodController : ControllerBase
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<List<Food>> GetAll()
+    public async Task<List<Food>> GetAll([FromQuery] FoodParameter foodParameter = null)
     {
-        return await _foodService.GetAllAsync();
+        return await _foodService.GetWithParametersAsync(foodParameter);
     }
 
     [HttpGet("/api/Food/GetList")]
