@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react';
 import queryString from 'query-string';
 
-export default function useGetPagination(AXIOS_GET, filters = {})
+export default function useGetPagination(AXIOS_GET)
 {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState([]);
     const [pagination, setPagination] = useState({});
     const [forceReload, setForceReload] = useState(true);
+
+    const [filters, setFilters] = useState({
+        PageNumber: 1,
+        PageSize: 5
+    });
 
     useEffect(() =>
     {
@@ -27,10 +32,19 @@ export default function useGetPagination(AXIOS_GET, filters = {})
 
     const handleForceReload = () => setForceReload(!forceReload);
 
+    const handlePagination = (newPage) =>
+    {
+        setFilters({
+            ...filters,
+            PageNumber: newPage
+        });
+    }
+
     return {
         isLoading,
         data,
         pagination,
+        handlePagination,
         handleForceReload
     };
 };

@@ -3,26 +3,16 @@ import { GET_FOOD, DELETE_FOOD } from '../../api/apiFood';
 import Pagination from '../Other/Pagination';
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function ManageFood()
 {
-    const [filters, setFilters] = useState({
-        PageNumber: 1,
-        PageSize: 5
-    });
     const { isLoading, data: listFood, pagination,
-        handleForceReload } = useGetPagination(GET_FOOD, filters);
+        handlePagination, handleForceReload } = useGetPagination(GET_FOOD);
 
-    const handlePageChange = (newPage) =>
-    {
-        setFilters({
-            ...filters,
-            PageNumber: newPage
-        });
-    }
+    const handlePageChange = (newPage) => handlePagination(newPage);
 
-    const handleDelete = async (foodId) =>
+    const handleDelete = async (foodId) =>  
     {
         if (window.confirm("Bạn chắc chắn muốn xoá chứ ?"))
         {
