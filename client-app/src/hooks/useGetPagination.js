@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import queryString from 'query-string';
 
 export default function useGetPagination(AXIOS_GET)
 {
@@ -17,8 +16,7 @@ export default function useGetPagination(AXIOS_GET)
     {
         const getData = async () =>
         {
-            const params = queryString.stringify(filters);
-            const response = await AXIOS_GET(params);
+            const response = await AXIOS_GET(filters);
             if (response.status === 200)
             {
                 setIsLoading(false);

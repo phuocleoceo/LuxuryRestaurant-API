@@ -23,6 +23,13 @@ public class FoodController : ControllerBase
         _mapper = mapper;
     }
 
+    [HttpGet("/api/Food/GetFull")]
+    [AllowAnonymous]
+    public async Task<List<Food>> GetFull()
+    {
+        return await _foodService.GetAllAsync();
+    }
+
     [HttpGet]
     [AllowAnonymous]
     public async Task<IActionResult> GetAll([FromQuery] FoodParameter foodParameter = null)

@@ -1,5 +1,6 @@
 import { GET_ACCESS_TOKEN, GET_REFRESH_TOKEN, SET_USER } from '../extension/UserLS';
 import { API_URL } from '../extension/AppURL';
+import queryString from 'query-string';
 import axios from 'axios';
 
 
@@ -7,7 +8,8 @@ const callAPI = axios.create({
     baseURL: API_URL,
     headers: {
         'content-type': 'application/json'
-    }
+    },
+    paramsSerializer: params => queryString.stringify(params)
 });
 
 callAPI.interceptors.request.use((config) =>
