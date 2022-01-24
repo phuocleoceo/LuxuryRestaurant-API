@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import queryString from 'query-string';
 
-export default function useGetPagination(AXIOS_GET)
+export default function useGetPagination(AXIOS_GET, filters = {})
 {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState([]);
@@ -11,7 +12,8 @@ export default function useGetPagination(AXIOS_GET)
     {
         const getData = async () =>
         {
-            const response = await AXIOS_GET();
+            const params = queryString.stringify(filters);
+            const response = await AXIOS_GET(params);
             if (response.status === 200)
             {
                 setIsLoading(false);
@@ -21,7 +23,7 @@ export default function useGetPagination(AXIOS_GET)
             }
         };
         getData();
-    }, [AXIOS_GET, forceReload]);
+    }, [AXIOS_GET, filters, forceReload]);
 
     const handleForceReload = () => setForceReload(!forceReload);
 

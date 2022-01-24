@@ -6,7 +6,6 @@ using LuxuryRestaurantAPI.Service;
 using LuxuryRestaurantAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using LuxuryRestaurantAPI.DTO;
-using Newtonsoft.Json;
 using AutoMapper;
 
 namespace LuxuryRestaurantAPI.Controllers;
@@ -26,11 +25,14 @@ public class FoodController : ControllerBase
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<PagedList<Food>> GetAll([FromQuery] FoodParameter foodParameter = null)
+    public async Task<IActionResult> GetAll([FromQuery] FoodParameter foodParameter = null)
     {
         PagedList<Food> listFood = await _foodService.GetWithParametersAsync(foodParameter);
-        Response.Headers.Add("x-pagination", JsonConvert.SerializeObject(listFood.MetaData));
-        return listFood;
+        return Ok(new
+        {
+            data = listFood,
+            pagination = listFood.MetaData
+        });
     }
 
     [HttpGet("/api/Food/GetList")]

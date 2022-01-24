@@ -1,12 +1,26 @@
+import useGetPagination from '../../hooks/useGetPagination';
 import { GET_FOOD, DELETE_FOOD } from '../../api/apiFood';
-import useGetData from '../../hooks/useGetData';
+import Pagination from '../Other/Pagination';
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function ManageFood()
 {
-    const { isLoading, data: listFood, handleForceReload } = useGetData(GET_FOOD);
+    const [filters, setFilters] = useState({
+        PageNumber: 1,
+        PageSize: 5
+    });
+    const { isLoading, data: listFood, pagination,
+        handleForceReload } = useGetPagination(GET_FOOD, filters);
+
+    const handlePageChange = (newPage) =>
+    {
+        setFilters({
+            ...filters,
+            PageNumber: newPage
+        });
+    }
 
     const handleDelete = async (foodId) =>
     {
@@ -72,6 +86,9 @@ export default function ManageFood()
                                 }
                             </tbody>
                         </table>
+                        <Pagination
+                            pagination={pagination}
+                            onPageChange={handlePageChange} />
                     </div>
                 }
             </div>

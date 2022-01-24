@@ -1,5 +1,5 @@
+import useGetPagination from '../../hooks/useGetPagination';
 import { ADD_TO_CART } from '../../redux/slices/cartSlice';
-import useGetData from '../../hooks/useGetData';
 import { GET_FOOD } from '../../api/apiFood';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -8,7 +8,7 @@ import React from 'react';
 export default function Menu()
 {
     const dispatch = useDispatch();
-    const { isLoading, data: listFood } = useGetData(GET_FOOD);
+    const { isLoading, data: listFood } = useGetPagination(GET_FOOD);
 
     const handleAddToCart = async (foodId) =>
     {

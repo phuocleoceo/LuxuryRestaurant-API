@@ -875,3 +875,26 @@ tr:hover {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/*-------------------- Pagination ---------------------*/
+.pagination{
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.pagination button{
+  font-size: 25px;
+  padding: 1px 15px;
+  margin-left: 5px;
+  background-color: whitesmoke;
+}
+
+.pagination button:hover{
+  cursor: pointer;
+  color: white;
+  background-color: #27ae60;
+}
+
+.pagination span{
+  font-size: 15px;
+}

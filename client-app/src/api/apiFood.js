@@ -1,6 +1,6 @@
 import callAPI from './apiService';
 
-export const GET_FOOD = () => callAPI.get("food");
+export const GET_FOOD = (params) => callAPI.get("food?" + params);
 
 export const GET_LIST = (listId) => callAPI.get("food/getlist?listId=" + listId);
 
