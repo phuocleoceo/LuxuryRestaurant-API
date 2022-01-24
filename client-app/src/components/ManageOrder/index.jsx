@@ -7,7 +7,7 @@ import moment from 'moment';
 
 export default function ManageOrder()
 {
-    const { isLoading, responseData: listOrder } = useGetData(GET_ALL_ORDER);
+    const { isLoading, data: listOrder } = useGetData(GET_ALL_ORDER);
     const [orderDetail, setOrderDetail] = useState([]);
     const { isShowing, toggle } = useModal();
 

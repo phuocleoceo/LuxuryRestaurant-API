@@ -29,7 +29,7 @@ public class FoodController : ControllerBase
     public async Task<PagedList<Food>> GetAll([FromQuery] FoodParameter foodParameter = null)
     {
         PagedList<Food> listFood = await _foodService.GetWithParametersAsync(foodParameter);
-        Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(listFood.MetaData));
+        Response.Headers.Add("x-pagination", JsonConvert.SerializeObject(listFood.MetaData));
         return listFood;
     }
 

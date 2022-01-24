@@ -8,7 +8,7 @@ import React from 'react';
 export default function Menu()
 {
     const dispatch = useDispatch();
-    const { isLoading, responseData: listFood } = useGetData(GET_FOOD);
+    const { isLoading, data: listFood } = useGetData(GET_FOOD);
 
     const handleAddToCart = async (foodId) =>
     {

@@ -6,7 +6,7 @@ import React from 'react';
 
 export default function ManageFood()
 {
-    const { isLoading, responseData: listFood, handleForceReload } = useGetData(GET_FOOD);
+    const { isLoading, data: listFood, handleForceReload } = useGetData(GET_FOOD);
 
     const handleDelete = async (foodId) =>
     {

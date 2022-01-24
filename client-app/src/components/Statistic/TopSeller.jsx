@@ -8,7 +8,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function TopSeller()
 {
-    const { responseData: topseller } = useGetData(GET_TOP_SELLER);
+    const { data: topseller } = useGetData(GET_TOP_SELLER);
 
     const options = {
         responsive: true,

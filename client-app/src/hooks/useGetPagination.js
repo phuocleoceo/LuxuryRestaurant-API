@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 
-export default function useGetData(AXIOS_GET)
+export default function useGetPagination(AXIOS_GET)
 {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState([]);
+    const [pagination, setPagination] = useState({});
     const [forceReload, setForceReload] = useState(true);
 
     useEffect(() =>
@@ -14,7 +15,9 @@ export default function useGetData(AXIOS_GET)
             if (response.status === 200)
             {
                 setIsLoading(false);
-                setData(response.data);
+                const { data, pagination } = response.data;
+                setData(data);
+                setPagination(pagination);
             }
         };
         getData();
@@ -25,6 +28,7 @@ export default function useGetData(AXIOS_GET)
     return {
         isLoading,
         data,
+        pagination,
         handleForceReload
     };
 };

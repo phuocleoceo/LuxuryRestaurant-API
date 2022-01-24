@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function ManageUser()
 {
-    const { isLoading, responseData: listUser } = useGetData(GET_ALL_USER);
+    const { isLoading, data: listUser } = useGetData(GET_ALL_USER);
     return (
         <section className="manage-container">
             <div className="table-Container">

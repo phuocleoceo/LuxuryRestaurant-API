@@ -25,7 +25,7 @@ const labels = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư',
 
 export default function DayOfWeek()
 {
-    const { responseData: sales } = useGetData(GET_SALES_PER_DOW);
+    const { data: sales } = useGetData(GET_SALES_PER_DOW);
 
     const data = {
         labels,
