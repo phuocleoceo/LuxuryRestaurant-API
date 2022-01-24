@@ -1,3 +1,5 @@
+using LuxuryRestaurantAPI.Extension.Paging;
+using LuxuryRestaurantAPI.DTO.RequestModel;
 using Microsoft.AspNetCore.Authorization;
 using LuxuryRestaurantAPI.Extension;
 using LuxuryRestaurantAPI.Service;
@@ -34,9 +36,13 @@ public class OrderController : ControllerBase
 
     [HttpGet("/api/Order/GetAll")]
     [Authorize(Roles = Constant.Role_Admin)]
-    public async Task<IActionResult> GetAllOrder()
+    public async Task<IActionResult> GetAllOrder([FromQuery] OrderParameter orderParameter = null)
     {
-        List<Order> list = await _orderService.GetAllAsync();
-        return Ok(list);
+        PagedList<Order> listOrder = await _orderService.GetAllAsync(orderParameter);
+        return Ok(new
+        {
+            data = listOrder,
+            pagination = listOrder.MetaData
+        });
     }
 }

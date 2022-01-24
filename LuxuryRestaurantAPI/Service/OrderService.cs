@@ -1,3 +1,5 @@
+using LuxuryRestaurantAPI.Extension.Paging;
+using LuxuryRestaurantAPI.DTO.RequestModel;
 using LuxuryRestaurantAPI.Models;
 using MongoDB.Driver;
 
@@ -17,10 +19,11 @@ public class OrderService
         _orderCollection = mongoDatabase.GetCollection<Order>("orders");
     }
 
-    public async Task<List<Order>> GetAllAsync()
+    public async Task<PagedList<Order>> GetAllAsync(OrderParameter orderParameter)
     {
-        return await _orderCollection.Find(_ => true)
+        List<Order> listOrder = await _orderCollection.Find(_ => true)
                     .SortByDescending(c => c.OrderDate).ToListAsync();
+        return listOrder.ToPagedList(orderParameter.PageNumber, orderParameter.PageSize);
     }
 
     public async Task<Order> GetOneAsync(string UserId)

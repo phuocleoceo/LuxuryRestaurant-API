@@ -1,3 +1,5 @@
+using LuxuryRestaurantAPI.Extension.Paging;
+using LuxuryRestaurantAPI.DTO.RequestModel;
 using LuxuryRestaurantAPI.Extension;
 using LuxuryRestaurantAPI.Models;
 using MongoDB.Driver;
@@ -30,9 +32,10 @@ public class UserService
         return user;
     }
 
-    public async Task<List<User>> GetAllAsync()
+    public async Task<PagedList<User>> GetAllAsync(UserParameter userParameter)
     {
-        return await _userCollection.Find(_ => true).ToListAsync();
+        List<User> listUser = await _userCollection.Find(_ => true).ToListAsync();
+        return listUser.ToPagedList(userParameter.PageNumber, userParameter.PageSize);
     }
 
     public async Task<User> GetAsync(string id)

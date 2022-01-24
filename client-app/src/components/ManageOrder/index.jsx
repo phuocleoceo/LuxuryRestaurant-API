@@ -1,5 +1,6 @@
+import useGetFilter from '../../hooks/useGetFilter';
 import { GET_ALL_ORDER } from '../../api/apiOrder';
-import useGetData from '../../hooks/useGetData';
+import Pagination from '../Other/Pagination';
 import OrderModal from '../Other/OrderModal';
 import useModal from '../../hooks/useModal';
 import React, { useState } from 'react';
@@ -7,9 +8,13 @@ import moment from 'moment';
 
 export default function ManageOrder()
 {
-    const { isLoading, data: listOrder } = useGetData(GET_ALL_ORDER);
+    const { isLoading, data: listOrder, pagination,
+        handlePagination } = useGetFilter(GET_ALL_ORDER);
+
     const [orderDetail, setOrderDetail] = useState([]);
     const { isShowing, toggle } = useModal();
+
+    const handlePageChange = (newPage) => handlePagination(newPage);
 
     return (
         <section className="manage-container">
@@ -56,6 +61,10 @@ export default function ManageOrder()
                                 }
                             </tbody>
                         </table>
+                        <Pagination
+                            pagination={pagination}
+                            onPageChange={handlePageChange}
+                        />
                     </div>
                 }
             </div>

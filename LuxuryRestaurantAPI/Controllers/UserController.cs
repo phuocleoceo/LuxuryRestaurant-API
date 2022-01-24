@@ -1,3 +1,5 @@
+using LuxuryRestaurantAPI.Extension.Paging;
+using LuxuryRestaurantAPI.DTO.RequestModel;
 using Microsoft.AspNetCore.Authorization;
 using LuxuryRestaurantAPI.Authentication;
 using LuxuryRestaurantAPI.Extension;
@@ -24,11 +26,15 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetListUser()
+    public async Task<IActionResult> GetListUser([FromQuery] UserParameter userParameter = null)
     {
-        List<User> listUser = await _userService.GetAllAsync();
+        PagedList<User> listUser = await _userService.GetAllAsync(userParameter);
         IEnumerable<UserDTO> list = listUser.Select(c => _mapper.Map<UserDTO>(c));
-        return Ok(list);
+        return Ok(new
+        {
+            data = list,
+            pagination = listUser.MetaData
+        });
     }
 
     [HttpGet("{id:length(24)}")]

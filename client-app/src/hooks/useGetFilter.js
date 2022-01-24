@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useGetPagination(AXIOS_GET)
+export default function useGetFilter(AXIOS_GET)
 {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState([]);

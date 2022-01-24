@@ -1,10 +1,15 @@
+import useGetFilter from '../../hooks/useGetFilter';
 import { GET_ALL_USER } from '../../api/apiUser';
-import useGetData from '../../hooks/useGetData';
+import Pagination from '../Other/Pagination';
 import React from 'react';
 
 export default function ManageUser()
 {
-    const { isLoading, data: listUser } = useGetData(GET_ALL_USER);
+    const { isLoading, data: listUser, pagination,
+        handlePagination } = useGetFilter(GET_ALL_USER);
+
+    const handlePageChange = (newPage) => handlePagination(newPage);
+
     return (
         <section className="manage-container">
             <div className="table-Container">
@@ -47,6 +52,10 @@ export default function ManageUser()
                                 }
                             </tbody>
                         </table>
+                        <Pagination
+                            pagination={pagination}
+                            onPageChange={handlePageChange}
+                        />
                     </div>
                 }
             </div>

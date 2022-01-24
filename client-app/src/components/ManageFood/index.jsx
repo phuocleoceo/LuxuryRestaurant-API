@@ -1,4 +1,4 @@
-import useGetPagination from '../../hooks/useGetPagination';
+import useGetFilter from '../../hooks/useGetFilter';
 import { GET_FOOD, DELETE_FOOD } from '../../api/apiFood';
 import Pagination from '../Other/Pagination';
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import React from 'react';
 export default function ManageFood()
 {
     const { isLoading, data: listFood, pagination,
-        handlePagination, handleForceReload } = useGetPagination(GET_FOOD);
+        handlePagination, handleForceReload } = useGetFilter(GET_FOOD);
 
     const handlePageChange = (newPage) => handlePagination(newPage);
 
@@ -78,7 +78,8 @@ export default function ManageFood()
                         </table>
                         <Pagination
                             pagination={pagination}
-                            onPageChange={handlePageChange} />
+                            onPageChange={handlePageChange}
+                        />
                     </div>
                 }
             </div>
